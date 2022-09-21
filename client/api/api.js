@@ -1,7 +1,5 @@
 import axios from "axios";
 
-let token = localStorage.getItem("token");
-
 let URL = "https://kanban-tasks-manager.vercel.app/api/v1";
 
 if (process.env.NODE_ENV !== "production") {
@@ -14,7 +12,8 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    token = localStorage.getItem("token");
+    let token;
+    if (typeof window !== "undefined") token = localStorage.getItem("token");
     config.headers.common["Authorization"] = `Bearer ${token}`;
     return config;
   },

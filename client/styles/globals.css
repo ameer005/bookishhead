@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
 @layer base {
   *,
   *::after,
@@ -13,7 +11,6 @@
   }
 
   body {
-    font-family: "Poppins", sans-serif;
     font-weight: 400;
     min-height: 100vh;
     line-height: 1;
@@ -36,5 +33,5 @@
 }
 
 .input {
-  @apply w-full px-4 py-3 text-sm bg-transparent border  rounded-lg outline-none;
+  @apply w-full px-4 py-3 font-medium text-sm bg-transparent border-2  rounded-lg outline-none;
 }

@@ -54,7 +54,7 @@ exports.activateAccount = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email, activationCode: otp });
 
   if (!user) {
-    return next(new AppError("Please provide a valid otp"));
+    return next(new AppError("Please provide a valid otp", 400));
   }
 
   user.accountActivated = true;

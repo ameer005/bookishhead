@@ -1,19 +1,22 @@
+import React from "react";
 import { useRouter } from "next/router";
-import Navbar from "./navBar/navbar";
+
+import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const showNavbar =
+
+  const showHeader =
     router.pathname === "/login" ||
     router.pathname === "/signup" ||
-    router.pathname === "/verify"
+    router.pathname === "/signup/verify"
       ? false
       : true;
 
   return (
     <>
-      {showNavbar && <Navbar />}
-      <main className="bg-colorGray2">{children}</main>
+      {showHeader && <Navbar />}
+      <main className="bg-colorBg">{children}</main>{" "}
     </>
   );
 };

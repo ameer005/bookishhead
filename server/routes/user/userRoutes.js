@@ -9,7 +9,7 @@ const {
 const router = express.Router();
 
 router.route("/signup").post(signup);
-router.route("/verify").post(activateAccount);
+router.route("/activateAccount").post(activateAccount);
 router.route("/sendActivationCode").post(sendActivationCode);
 router.route("/login").post(login);
 

@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -7,15 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        colorPrimary: "#EE5B47",
-        colorPrimary2: "#f59d91",
-        colorPrimary3: "#f7ada3",
-        colorSecondary: "#043730",
-        colorSecondary2: "#3C6761",
-        colorBlue: "#1DA1F2",
-        colorGray: "#6C707B",
-        colorGray2: "#f0f1f2",
+        colorPrimary: "#DAAA63",
+        colorSecondary: "#ada5a1",
+        colorSecondary2: "#b8b2ae",
+        colorSecondary3: "#797371",
+        colorBg: "#f8f3ed",
         colorWhite: "#FFFFFF",
+        colorBlack: "#2c1810",
+      },
+      fontFamily: {
+        mons: "'Montserrat', 'sans-serif'",
+        calson: "'Libre Caslon Text', 'serif'",
       },
     },
   },

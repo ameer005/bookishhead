@@ -1,7 +1,7 @@
 const catchAsync = require("../../utils/catchAsync/catchAsync");
 const AppError = require("../../utils/appError/appError");
 const jwt = require("jsonwebtoken");
-const User = require("../../models/user/user");
+const User = require("../../models/user/userModel");
 
 const auth = catchAsync(async (req, res, next) => {
   const authHeader = req.headers.authorization;
