@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   return (
     <>
       {showHeader && <Navbar />}
-      <main className="bg-colorBg">{children}</main>{" "}
+      <main className="px-28">{children}</main>{" "}
     </>
   );
 };

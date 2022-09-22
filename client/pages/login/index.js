@@ -7,8 +7,13 @@ import InputField from "../../components/form/InputField";
 import BtnPrimary from "../../components/ui/BtnPrimary";
 import Logo from "../../components/ui/Logo";
 import { schemaLogin } from "../../utils/yup/schema";
+import useStore from "../../store/useStore";
+import { useLogin } from "../../hooks/features/auth/useAuth";
 
 const LoginPage = () => {
+  const setUserEmail = useStore((state) => state.setUserEmail);
+  const { isLoading, mutate } = useLogin();
+
   const {
     register,
     handleSubmit,
@@ -18,7 +23,8 @@ const LoginPage = () => {
   });
 
   const submitForm = (formData) => {
-    console.log(formData);
+    setUserEmail(formData.email);
+    mutate(formData);
   };
 
   return (
@@ -54,6 +60,7 @@ const LoginPage = () => {
               textColor={"text-colorBlack"}
               text={"Login"}
               type={"submit"}
+              loading={isLoading}
             />
           </div>
           <Link href={"/signup"}>

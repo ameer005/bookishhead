@@ -12,6 +12,7 @@ module.exports = {
         colorSecondary: "#ada5a1",
         colorSecondary2: "#b8b2ae",
         colorSecondary3: "#797371",
+        colorNav: "#dfdbd5",
         colorBg: "#f8f3ed",
         colorWhite: "#FFFFFF",
         colorBlack: "#2c1810",

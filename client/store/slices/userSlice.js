@@ -1,9 +1,13 @@
+let token;
 let user;
-if (typeof window !== "undefined")
+if (typeof window !== "undefined") {
+  token = localStorage.getItem("token");
   user = JSON.parse(localStorage.getItem("user"));
+}
 
 const userSlice = (set, get) => ({
   user: user || null,
+  token: token || null,
   email: "",
   setUser: (user) => {
     set({ user: user });
