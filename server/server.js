@@ -9,6 +9,7 @@ const connectDb = require("./db/connect");
 // Routes imports
 const userRouter = require("./routes/user/userRoutes");
 const bookRouter = require("./routes/book/bookRoutes");
+const reviewRouter = require("./routes/review/reviewRoutes");
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/books", bookRouter);
+app.use("/api/v1/reviews", reviewRouter);
 
 // Global Error handeling
 app.use(errorHandlerMiddleware);

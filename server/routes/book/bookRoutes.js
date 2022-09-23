@@ -1,4 +1,5 @@
 const express = require("express");
+const reviewRouter = require("../review/reviewRoutes");
 const authenticateUser = require("../../middleware/authentication/authentication");
 const authorizeUser = require("../../middleware/authorization/authorization");
 const {
@@ -10,6 +11,8 @@ const {
 } = require("../../controllers/book/bookController");
 
 const router = express.Router();
+
+router.use("/:bookId/reviews", reviewRouter);
 
 router.route("/").get(getBooks).post(authenticateUser, authorizeUser, addBook);
 

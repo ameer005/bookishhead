@@ -6,10 +6,10 @@ const SearchBar = () => {
     <form className="w-full max-w-[30rem]">
       <label className="relative">
         <input
-          className="w-full px-2 py-2 border border-colorSecondary outline-none rounded-md"
+          className="w-full px-2 py-2 border-2 border-colorSecondary focus:border-colorPrimary outline-none rounded-md ut-animation"
           type="text"
         />
-        <MdSearch className="h-6 w-6 absolute top-[50%] right-4 -translate-y-[50%]" />
+        <MdSearch className="h-6 w-6 absolute top-[50%] right-4 -translate-y-[50%] text-colorSecondary2" />
       </label>
     </form>
   );

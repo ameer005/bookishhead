@@ -31,7 +31,7 @@ const bookSchema = new mongoose.Schema(
       type: Number,
       default: 1,
       min: [1, "Rating must be above 1"],
-      max: [5, "Rating must be below 5"],
+      max: [10, "Rating must be below 10"],
     },
     releaseYear: {
       type: Number,
