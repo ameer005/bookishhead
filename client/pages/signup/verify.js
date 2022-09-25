@@ -5,7 +5,7 @@ import InputField from "../../components/form/InputField";
 import BtnPrimary from "../../components/ui/BtnPrimary";
 import Logo from "../../components/ui/Logo";
 import { schemaActivateAccount } from "../../utils/yup/schema";
-import { useActivateAccount } from "../../hooks/features/auth/useAuth";
+import { useActivateAccount } from "../../hooks/api/auth/useAuth";
 import useStore from "../../store/useStore";
 
 const Verify = () => {

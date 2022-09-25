@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   return (
     <>
       {showHeader && <Navbar />}
-      <main className="px-28">{children}</main>{" "}
+      <main className="px-28 text-colorBlack text-sm">{children}</main>
     </>
   );
 };

@@ -5,12 +5,22 @@ const catchAsync = require("../../utils/catchAsync/catchAsync");
 const APIFeature = require("../../utils/apiFeatures/apiFeatures");
 
 exports.getBooks = catchAsync(async (req, res, next) => {
-  const features = new APIFeature(Book.find(), req.query).filter();
+  const limit = req.query.limit * 1 || 40;
+  const page = req.query.page * 1 || 1;
+  const totalBooks = await Book.countDocuments();
+  const totalPages = Math.ceil(totalBooks / limit);
 
+  const features = new APIFeature(Book.find(), req.query).filter().paginate();
   const books = await features.query;
+
+  if (page > totalPages) {
+    return new next(new AppError("No page found", 404));
+  }
 
   res.status(200).json({
     status: "success",
+    page,
+    totalPages,
     results: books.length,
     data: {
       books,
@@ -30,8 +40,7 @@ exports.getBook = catchAsync(async (req, res, next) => {
 });
 
 exports.addBook = catchAsync(async (req, res, next) => {
-  const { title, author, summary, pages, coverImg, releaseYear, genres } =
-    req.body;
+  const { title, author, summary, pages, coverImg, genres } = req.body;
 
   const book = await Book.create({
     title,
@@ -40,7 +49,6 @@ exports.addBook = catchAsync(async (req, res, next) => {
     author,
     summary,
     genres,
-    releaseYear,
   });
 
   res.status(201).json({

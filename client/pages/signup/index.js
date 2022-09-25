@@ -7,7 +7,7 @@ import InputField from "../../components/form/InputField";
 import BtnPrimary from "../../components/ui/BtnPrimary";
 import Logo from "../../components/ui/Logo";
 import { schemaSignup } from "../../utils/yup/schema";
-import { useSignUp } from "../../hooks/features/auth/useAuth";
+import { useSignUp } from "../../hooks/api/auth/useAuth";
 import useStore from "../../store/useStore";
 
 const Signup = () => {

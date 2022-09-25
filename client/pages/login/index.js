@@ -8,7 +8,7 @@ import BtnPrimary from "../../components/ui/BtnPrimary";
 import Logo from "../../components/ui/Logo";
 import { schemaLogin } from "../../utils/yup/schema";
 import useStore from "../../store/useStore";
-import { useLogin } from "../../hooks/features/auth/useAuth";
+import { useLogin } from "../../hooks/api/auth/useAuth";
 
 const LoginPage = () => {
   const setUserEmail = useStore((state) => state.setUserEmail);

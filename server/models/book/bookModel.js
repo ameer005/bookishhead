@@ -12,7 +12,7 @@ const bookSchema = new mongoose.Schema(
       required: [true, "Please provide author's name"],
       trim: true,
     },
-    summarry: {
+    summary: {
       type: String,
     },
     pages: {
@@ -32,10 +32,6 @@ const bookSchema = new mongoose.Schema(
       default: 1,
       min: [1, "Rating must be above 1"],
       max: [10, "Rating must be below 10"],
-    },
-    releaseYear: {
-      type: Number,
-      required: [true, "Please provide release year"],
     },
     genres: [{ name: String }],
   },
