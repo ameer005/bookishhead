@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex items-center justify-between px-28 h-[4rem] mb-3 border-b border-colorNav">
+    <header className="flex items-center justify-between px-44 h-[4rem] mb-5 border-b border-colorNav/80">
       {/* Left side of header */}
       <div className="flex items-center gap-6 w-full">
         <Link href={"/"}>

@@ -22,9 +22,7 @@ exports.getBooks = catchAsync(async (req, res, next) => {
     page,
     totalPages,
     results: books.length,
-    data: {
-      books,
-    },
+    books,
   });
 });
 
@@ -36,6 +34,7 @@ exports.getBook = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
+    book,
   });
 });
 

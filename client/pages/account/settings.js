@@ -7,7 +7,7 @@ const Settings = () => {
   const [setting, setSetting] = useState("profile");
 
   return (
-    <section className="px-16">
+    <section className="px-24">
       <h3 className="font-bold text-lg font-calson mb-4">Account Settings</h3>
 
       {/* setting selector header */}
