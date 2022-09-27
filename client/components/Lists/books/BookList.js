@@ -5,7 +5,7 @@ const BookList = ({ isSuccess, isLoading, data }) => {
   const renderBookList = () => {
     if (!isSuccess) return;
 
-    return data.map((book) => {
+    return data?.map((book) => {
       return <Item data={book} />;
     });
     1;

@@ -1,7 +1,9 @@
 const User = require("../../models/user/userModel");
+const Book = require("../../models/book/bookModel");
 const AppError = require("../../utils/appError/appError");
 const catchAsync = require("../../utils/catchAsync/catchAsync");
 const generateOtp = require("../../utils/otp/generateOTP");
+const APIFeature = require("../../utils/apiFeatures/apiFeatures");
 const {
   sendActivationCode,
   sendForgotPasswordCode,
@@ -134,5 +136,3 @@ exports.login = catchAsync(async (req, res, next) => {
 // Forgot Password
 
 // Validate Forgot Password
-
-//***********************CREATE USER FLOW*************************//

@@ -9,8 +9,11 @@ const Item = ({ data }) => {
       onClick={() => router.push(`/books/${data._id}`)}
       className="cursor-pointer flex flex-col items-center hover:text-colorSecondary3 ut-animation"
     >
-      <div className="mb-2">
-        <img className="object-fill h-44 " src={data.coverImg}></img>
+      <div className="mb-2 h-44 w-[7.5rem]">
+        <img
+          className="object-containl w-full  h-full"
+          src={data.coverImg}
+        ></img>
       </div>
       <div className="h-[2rem] font-calson font-semibold text-center text-xs max-w-[16ch] overflow-hidden">
         {data.title}
