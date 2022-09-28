@@ -10,7 +10,14 @@ exports.getBooks = catchAsync(async (req, res, next) => {
   const totalBooks = await Book.countDocuments();
   const totalPages = Math.ceil(totalBooks / limit);
 
-  const features = new APIFeature(Book.find(), req.query).filter().paginate();
+  let features;
+
+  if (req.query.title) {
+    features = new APIFeature(Book.find(), req.query).liveFilter().paginate();
+  } else {
+    features = new APIFeature(Book.find(), req.query).filter().paginate();
+  }
+
   const books = await features.query;
 
   if (page > totalPages) {

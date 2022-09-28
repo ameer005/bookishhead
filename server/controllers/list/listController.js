@@ -51,7 +51,7 @@ exports.getUserBooksListItem = catchAsync(async (req, res, next) => {
   });
 
   if (!listItem) {
-    return next(new AppError("Wrong book id", 400));
+    return next(new AppError("you didn't added this book to the list", 400));
   }
 
   res.status(200).json({

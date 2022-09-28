@@ -13,8 +13,8 @@ const listSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["reading", "completed", "plan to read"],
-    default: "reading",
+    enum: ["Reading", "Completed", "Plan to read"],
+    default: "Reading",
   },
 });
 

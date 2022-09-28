@@ -4,6 +4,7 @@ import { useFetchBook } from "../../../hooks/api/book/useBook";
 import { BsFillStarFill, BsStar } from "react-icons/bs";
 
 import ReadMore from "../../../components/ui/ReadMore";
+import AddToList from "../../../components/ui/AddToList";
 
 const BookDetails = () => {
   const router = useRouter();
@@ -13,8 +14,6 @@ const BookDetails = () => {
     isLoading: bookLoading,
   } = useFetchBook(router.query.id);
   const book = bookData?.data.book;
-
-  console.log(book);
 
   const renderGenres = () => {
     return book?.genres.map((genre) => {
@@ -40,7 +39,7 @@ const BookDetails = () => {
               alt={book?.title}
             />
           </div>
-          <div>button</div>
+          <AddToList bookId={router.query.id} />
         </div>
 
         {/* Top left */}

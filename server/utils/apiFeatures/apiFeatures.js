@@ -4,6 +4,14 @@ class APIFeature {
     this.queryString = queryString;
   }
 
+  liveFilter() {
+    const { title } = this.queryString;
+
+    this.query = this.query.find({ title: { $regex: title, $options: "i" } });
+
+    return this;
+  }
+
   filter() {
     const queryObj = { ...this.queryString };
     const excludedFields = ["page", "sort", "limit", "fields"];
@@ -11,8 +19,6 @@ class APIFeature {
 
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-
-    console.log(queryStr);
 
     this.query = this.query.find(JSON.parse(queryStr));
 
