@@ -28,6 +28,18 @@
   display: none;
 }
 
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #dfdbd5;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+}
+
 /* custom utilites */
 .ut-animation {
   @apply transition-all duration-200;

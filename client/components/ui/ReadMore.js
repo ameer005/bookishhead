@@ -5,7 +5,7 @@ const ReadMore = ({ limit, text }) => {
 
   return (
     <div className="flex flex-col items-start">
-      <span className="mr-1 font-medium leading-[22px] text-colorSecondary3 whitespace-pre-line">
+      <span className="mr-1 font-medium leading-[22px] text-colorSecondary3">
         {readMoreShown ? text : text.substr(0, limit) + "..."}
       </span>
       <button

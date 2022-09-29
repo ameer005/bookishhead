@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Item from "./Item";
 
 const BookList = ({ isSuccess, isLoading, data }) => {
