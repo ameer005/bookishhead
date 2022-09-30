@@ -10,7 +10,7 @@ const SearchBar = () => {
   const setResultBoxState = useStore((state) => state.setResultBoxState);
   const [searchValue, setSearchValue] = useState("");
   const searchBarRef = useRef();
-  const { data, isSuccess, isLoading, isError } = useFetchBooks({
+  const { data, isSuccess, isLoading } = useFetchBooks({
     title: searchValue || "afjkadjkfjdjf",
     limit: 8,
   });
@@ -26,7 +26,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
-      if (!searchBarRef.current.contains(e.target)) {
+      if (!searchBarRef?.current?.contains(e.target)) {
         setResultBoxState(false);
       }
     });

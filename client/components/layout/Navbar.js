@@ -29,12 +29,12 @@ const Navbar = () => {
       return (
         <>
           <Link href={"/login"}>
-            <a className="py-3  w-[5rem] text-center rounded-md font-semibold hover:bg-colorPrimary ut-animation">
+            <a className="py-3  w-[5rem] text-center rounded-md font-medium hover:bg-colorPrimary hover:text-colorWhite text-sm ut-animation">
               Login
             </a>
           </Link>
           <Link href={"/signup"}>
-            <a className="py-3  w-[5rem] text-center rounded-md font-semibold hover:bg-colorPrimary ut-animation">
+            <a className="py-3  w-[5rem] text-center rounded-md font-medium hover:bg-colorPrimary hover:text-colorWhite text-sm ut-animation">
               Sign Up
             </a>
           </Link>

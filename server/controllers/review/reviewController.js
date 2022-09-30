@@ -32,8 +32,30 @@ exports.addReview = catchAsync(async (req, res, next) => {
   });
 });
 
-// get rating of a user on book
-exports.getReview = catchAsync(async (req, res, next) => {
+// get all reviews of a book
+exports.getReviews = catchAsync(async (req, res, next) => {
+  const { bookId } = req.params;
+
+  const book = await Book.findById(bookId);
+
+  if (!book) {
+    return next(new AppError("No book found with this id", 400));
+  }
+
+  const reviews = await Review.find({ book: bookId });
+
+  if (!reviews) {
+    return next(new AppError("You didn't rate this book", 400));
+  }
+
+  res.status(200).json({
+    status: "success",
+    reviews,
+  });
+});
+
+// get review of a user on book
+exports.getUserReview = catchAsync(async (req, res, next) => {
   const { bookId } = req.params;
 
   const book = await Book.findById(bookId);
@@ -50,9 +72,7 @@ exports.getReview = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    data: {
-      review,
-    },
+    review,
   });
 });
 

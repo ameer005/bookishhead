@@ -28,6 +28,7 @@ export default function Document() {
       <body className="font-mons">
         <Main />
         <NextScript />
+        <div id="modal-ratings"></div>
       </body>
     </Html>
   );

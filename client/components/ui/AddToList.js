@@ -87,10 +87,15 @@ const AddToList = ({ bookId }) => {
   if (!userBook) {
     return (
       <button
+        disabled={addUserBookLoading || userBooksLoadin}
         onClick={() => addUserBook({ bookId })}
         className="bg-colorPrimary py-2 text-center text-colorWhite font-medium rounded-md  ut-animation hover:brightness-90 w-full"
       >
-        {addUserBookLoading ? <LoadingSpinner /> : "Add To List"}
+        {addUserBookLoading || userBooksLoadin ? (
+          <LoadingSpinner />
+        ) : (
+          "Add To List"
+        )}
       </button>
     );
   } else {

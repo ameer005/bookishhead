@@ -3,17 +3,16 @@ const authenticateUser = require("../../middleware/authentication/authentication
 const authorizedUser = require("../../middleware/authorization/authorization");
 const {
   addReview,
-  getReview,
+  getReviews,
   deleteReview,
   updateReview,
+  getUserReview,
 } = require("../../controllers/review/reviewController");
 
 const router = express.Router({ mergeParams: true });
 
-router
-  .route("/")
-  .post(authenticateUser, addReview)
-  .get(authenticateUser, getReview);
+router.route("/").post(authenticateUser, addReview).get(getReviews);
+router.route("/user").get(authenticateUser, getUserReview);
 
 router
   .route("/:id")
