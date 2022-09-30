@@ -10,21 +10,22 @@ import AddToList from "../../../components/ui/AddToList";
 import Ratings from "../../../components/modals/Ratings";
 
 const BookDetails = () => {
+  const router = useRouter();
   const setRatingsModalState = useStore((state) => state.setRatingsModalState);
   const showRatingsModal = useStore((state) => state.showRatingsModal);
 
-  const router = useRouter();
   const {
     data: bookData,
     isSuccess: bookSuccess,
     isLoading: bookLoading,
-  } = useFetchBook(router.query?.id);
+  } = useFetchBook(router.query.id);
   const book = bookData?.data.book;
 
   const {
     data: userReviewData,
     isSuccess: userReviewSuccess,
     isLoading: userReviewLoading,
+    refetch: userReviewRefect,
   } = useFetchUserReview(router.query.id);
   const userReview = userReviewData?.data.review;
 
@@ -69,7 +70,9 @@ const BookDetails = () => {
               <BsFillStarFill className="text-yellow-500 text-xl" />
               <div className="font-semibold text-colorSecondary3">
                 <span className="text-colorBlack font-bold">
-                  {book?.ratingsAverage.toFixed(1)}
+                  {book?.ratingsAverage !== 10
+                    ? book?.ratingsAverage.toFixed(1)
+                    : book?.ratingsAverage}
                 </span>
                 /<span>10</span>
               </div>
@@ -92,7 +95,11 @@ const BookDetails = () => {
                   "text-colorSecondary3 font-medium hover:text-colorPrimary ut-animation"
                 }
               >
-                {userReviewSuccess ? userReview?.rating.toFixed(1) : "Rate"}
+                {userReviewSuccess
+                  ? userReview?.rating !== 10
+                    ? userReview?.rating.toFixed(1)
+                    : userReview?.rating
+                  : "Rate"}
               </div>
             </button>
           </div>
@@ -101,7 +108,10 @@ const BookDetails = () => {
         </div>
       </div>
       {showRatingsModal && (
-        <Ratings userRatings={userReview} bookId={router.query.id} />
+        <Ratings
+          userRatings={userReviewSuccess && userReview}
+          bookId={router.query.id}
+        />
       )}
     </section>
   );

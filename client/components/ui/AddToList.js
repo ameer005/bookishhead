@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import {
-  useFetchUserBooks,
   useAddUserBook,
   useUpdateUserBookStatus,
+  useFetchUserBook,
 } from "../../hooks/api/userBooks/useUserBooks";
 
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
@@ -11,16 +11,14 @@ import SelectField from "../form/SelectField";
 const AddToList = ({ bookId }) => {
   const [isSelectOpen, setSelectOpen] = useState(false);
   const [selectStatusText, setSelectStatusText] = useState("Select status");
-  // const { state: isSelectOpen, toggle: setSelectOpen } = useToggle();
+
   const {
-    data: userBooks,
+    data: userBook,
     isSuccess: userBooksSuccess,
     isLoading: userBooksLoadin,
-  } = useFetchUserBooks(bookId);
+  } = useFetchUserBook(bookId);
 
-  let userBook = userBooks?.data.booksList.find(
-    (item) => item.book._id === bookId
-  );
+  let book = userBook?.data.listItem;
 
   const {
     mutate: addUserBook,
@@ -35,11 +33,8 @@ const AddToList = ({ bookId }) => {
   } = useUpdateUserBookStatus();
 
   useEffect(() => {
-    userBook = userBooks?.data.booksList.find(
-      (item) => item.book._id === bookId
-    );
-    setSelectStatusText(userBook?.status);
-  }, [userBooksSuccess, userBooks]);
+    setSelectStatusText(book?.status);
+  }, [userBooksSuccess, userBook]);
 
   const selectFieldList = () => {
     const list = [
@@ -84,7 +79,7 @@ const AddToList = ({ bookId }) => {
     });
   };
 
-  if (!userBook) {
+  if (!book) {
     return (
       <button
         disabled={addUserBookLoading || userBooksLoadin}

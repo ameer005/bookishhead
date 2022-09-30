@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import useToggle from "../../hooks/useToggle";
 import useStore from "../../store/useStore";
@@ -9,10 +10,15 @@ import CaretDropdown from "../ui/CaretDropdown";
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
+  const [isUserLoggedin, setUserLoggedin] = useState(false);
   const { state: profileDropdown, toggle: toggleProfileDropdown } = useToggle();
 
+  useEffect(() => {
+    setUserLoggedin(user ? true : false);
+  }, []);
+
   const loggedIn = () => {
-    if (user) {
+    if (isUserLoggedin) {
       return (
         <div
           onClick={toggleProfileDropdown}

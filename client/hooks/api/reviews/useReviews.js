@@ -8,6 +8,7 @@ import {
 } from "./reviewsServices";
 
 export const useFetchUserReview = (bookId) => {
+  const queryClient = useQueryClient();
   return useQuery(["reviews", bookId], fetchUserReview, {
     retry: false,
   });
@@ -20,6 +21,7 @@ export const useDeleteUserReview = () => {
   return useMutation(deleteReview, {
     onSuccess: () => {
       queryClient.invalidateQueries("reviews");
+      queryClient.invalidateQueries("books");
       setRatingsModalState(false);
     },
   });
