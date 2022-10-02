@@ -4,6 +4,7 @@ import {
   fetchUsersBooks,
   addUserBook,
   updateUserBookStatus,
+  deelteUserBook,
 } from "./userBooksServices";
 
 export const useFetchUserBooks = () => {
@@ -28,6 +29,15 @@ export const useAddUserBook = () => {
 export const useUpdateUserBookStatus = () => {
   const queryClient = useQueryClient();
   return useMutation(updateUserBookStatus, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("userBooks");
+    },
+  });
+};
+
+export const useDeleteUserbook = () => {
+  const queryClient = useQueryClient();
+  return useMutation(deelteUserBook, {
     onSuccess: () => {
       queryClient.invalidateQueries("userBooks");
     },

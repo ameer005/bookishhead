@@ -19,7 +19,6 @@ const BookDetails = () => {
     isSuccess: bookSuccess,
     isLoading: bookLoading,
   } = useFetchBook(router.query.id);
-  const book = bookData?.data.book;
 
   const {
     data: userReviewData,
@@ -27,14 +26,13 @@ const BookDetails = () => {
     isLoading: userReviewLoading,
     refetch: userReviewRefect,
   } = useFetchUserReview(router.query.id);
-  const userReview = userReviewData?.data.review;
 
   const renderGenres = () => {
-    return book?.genres.map((genre, index) => {
+    return bookData?.data.book.genres.map((genre, index) => {
       return (
         <div
           key={index}
-          className=" px-3 py-1 font-semibold text-xs  rounded-full border border-colorPrimary text-center"
+          className="text-gray-500 px-3 py-1 font-semibold text-xs  rounded-full border bg-gray-300/40 text-center cursor-pointer hover:bg-colorPrimary hover:text-colorWhite ut-animation"
         >
           {genre.name}
         </div>
@@ -52,9 +50,9 @@ const BookDetails = () => {
           <div className="shrink-0">
             <div className="h-72 mb-2">
               <img
-                className="object-contain h-full w-full"
-                src={book?.coverImg}
-                alt={book?.title}
+                className="object-contain h-full w-full rounded-md"
+                src={bookData?.data.book.coverImg}
+                alt={bookData?.data.book.title}
               />
             </div>
             <AddToList bookId={router.query.id} />
@@ -63,22 +61,27 @@ const BookDetails = () => {
           {/* Top left */}
           <div>
             <div className="mb-2">
-              <h3 className="font-calson font-bold text-xl">{book?.title}</h3>
-              <p className="font-medium text-colorSecondary3">{`by ${book?.author}`}</p>
+              <h3 className="font-calson font-bold text-xl">
+                {bookData?.data.book?.title}
+              </h3>
+              <div className="font-medium text-gray-500/80">
+                <span>by</span>
+                <span className="ml-1">{bookData?.data.book.author}</span>
+              </div>
             </div>
             <div className="mb-3 flex gap-3 items-center">
-              <div className="flex gap-1 items-center">
+              <div className="flex items-center gap-1">
                 <BsFillStarFill className="text-yellow-500 text-xl" />
                 <div className="font-semibold text-colorSecondary3">
                   <span className="text-colorBlack font-bold">
-                    {book?.ratingsAverage !== 10
-                      ? book?.ratingsAverage.toFixed(1)
-                      : book?.ratingsAverage}
+                    {bookData?.data.book.ratingsAverage !== 10
+                      ? bookData?.data.book.ratingsAverage.toFixed(1)
+                      : bookData?.data.book.ratingsAverage}
                   </span>
                   /<span>10</span>
                 </div>
               </div>
-              <div className="font-medium text-colorSecondary3">{`${book?.ratingsQuantity} ratings`}</div>
+              <div className="font-medium text-gray-500">{`${bookData?.data.book.ratingsQuantity} ratings`}</div>
 
               {/* give ratings button */}
               <button
@@ -93,24 +96,24 @@ const BookDetails = () => {
 
                 <div
                   className={
-                    "text-colorSecondary3 font-medium hover:text-colorPrimary ut-animation"
+                    "text-gray-500 font-medium hover:text-colorPrimaryLight3 ut-animation"
                   }
                 >
                   {userReviewSuccess
-                    ? userReview?.rating !== 10
-                      ? userReview?.rating.toFixed(1)
-                      : userReview?.rating
+                    ? userReviewData?.data.review.rating !== 10
+                      ? userReviewData?.data.review.rating.toFixed(1)
+                      : userReviewData?.data.review.rating
                     : "Rate"}
                 </div>
               </button>
             </div>
             <div className="flex gap-2 mb-3 flex-wrap">{renderGenres()}</div>
-            <ReadMore limit={520} text={book?.summary} />
+            <ReadMore limit={520} text={bookData?.data.book.summary} />
           </div>
         </div>
         {showRatingsModal && (
           <Ratings
-            userRatings={userReviewSuccess && userReview}
+            userRatings={userReviewSuccess && userReviewData?.data.review}
             bookId={router.query.id}
           />
         )}

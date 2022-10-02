@@ -64,7 +64,7 @@ const LoginPage = () => {
             />
           </div>
 
-          <div className="font-medium">
+          <div className="font-medium self-center">
             <span>Don't have an account?</span>
             <Link href={"/signup"}>
               <a className="text-colorPrimary ml-1 font-bold hover:text-colorPrimaryLight2 ut-animation">

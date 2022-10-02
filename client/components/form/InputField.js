@@ -13,7 +13,7 @@ const InputField = ({
       <div className="text-sm font-bold text-colorBlack mb-1">{labelText}</div>
       <input
         className={`input ${
-          errors[name] ? "border-red-500" : "border-colorGray/30"
+          errors[name] ? "border-red-500" : "border-gray-200"
         }`}
         type={type}
         placeholder={placeholder}

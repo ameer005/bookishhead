@@ -10,8 +10,8 @@ const BookList = ({ isSuccess, isLoading, data }) => {
     1;
   };
   return (
-    <div className="grid grid-cols-8 gap-y-8">
-      {renderBookList()?.slice(0, 16)}
+    <div className="grid grid-cols-5 gap-x-10 ">
+      {renderBookList()?.slice(0, 5)}
     </div>
   );
 };

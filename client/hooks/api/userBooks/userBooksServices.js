@@ -15,3 +15,7 @@ export const addUserBook = (listData) => {
 export const updateUserBookStatus = (payload) => {
   return api.patch(`/users/list/${payload.bookId}`, payload.data);
 };
+
+export const deelteUserBook = (bookId) => {
+  return api.delete(`/users/list/${bookId}`);
+};

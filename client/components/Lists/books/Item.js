@@ -7,16 +7,22 @@ const Item = ({ data }) => {
   return (
     <div
       onClick={() => router.push(`/books/${data._id}`)}
-      className="cursor-pointer flex flex-col items-center hover:text-colorSecondary3 ut-animation"
+      className="w-full max-w-[12.5rem] cursor-pointer py-5 px-4 flex flex-col items-center hover:bg-colorPrimaryLight3/20 ut-animation light-shadow rounded-md"
     >
-      <div className="mb-2 h-44 w-[7.5rem]">
+      <div className="mb-3 h-44 w-[7.5rem]">
         <img
-          className="object-containl w-full  h-full"
+          className="object-containl w-full h-full rounded-md"
           src={data.coverImg}
         ></img>
       </div>
-      <div className="h-[2rem] font-calson font-semibold text-center text-xs max-w-[16ch] overflow-hidden">
-        {data.title}
+      <div className="text-center">
+        <div className="font-bold mb-1 w-[18ch] overflow-hidden whitespace-nowrap">
+          {data.title}
+        </div>
+        <div className="font-bold text-xs">
+          <span className="text-colorGray/50">by</span>
+          <span className="text-colorPrimary ml-1 ">{data.author}</span>
+        </div>
       </div>
     </div>
   );

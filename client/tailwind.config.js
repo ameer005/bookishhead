@@ -18,6 +18,7 @@ module.exports = {
         // colorPrimaryLight3: "#FFAAA1",
         colorWhite: "#FFFFFF",
         colorBlack: "#1c1d22",
+        colorbg: "#fbfbfb",
 
         colorGray: "#8e8e91",
         colorGray2: "#606164",

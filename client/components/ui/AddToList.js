@@ -3,6 +3,7 @@ import {
   useAddUserBook,
   useUpdateUserBookStatus,
   useFetchUserBook,
+  useDeleteUserbook,
 } from "../../hooks/api/userBooks/useUserBooks";
 
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
@@ -18,8 +19,6 @@ const AddToList = ({ bookId }) => {
     isLoading: userBooksLoadin,
   } = useFetchUserBook(bookId);
 
-  let book = userBook?.data.listItem;
-
   const {
     mutate: addUserBook,
     isSuccess: addUserBookSuccess,
@@ -32,8 +31,16 @@ const AddToList = ({ bookId }) => {
     isLoading: updateUserBookLoading,
   } = useUpdateUserBookStatus();
 
+  const {
+    mutate: deleteUserBook,
+    isSuccess: deleteUserBookSuccess,
+    isLoading: deleteUserBookLoading,
+  } = useDeleteUserbook();
+
   useEffect(() => {
-    setSelectStatusText(book?.status);
+    if (!userBooksSuccess) return;
+
+    setSelectStatusText(userBook?.data.listItem.status);
   }, [userBooksSuccess, userBook]);
 
   const selectFieldList = () => {
@@ -79,7 +86,7 @@ const AddToList = ({ bookId }) => {
     });
   };
 
-  if (!book) {
+  if (!userBooksSuccess) {
     return (
       <button
         disabled={addUserBookLoading || userBooksLoadin}
@@ -95,13 +102,22 @@ const AddToList = ({ bookId }) => {
     );
   } else {
     return (
-      <SelectField
-        isSelectOpen={isSelectOpen}
-        setSelectOpen={setSelectOpen}
-        selectText={selectStatusText}
-        list={selectFieldList}
-        isLoading={updateUserBookLoading}
-      />
+      <div>
+        <SelectField
+          isSelectOpen={isSelectOpen}
+          setSelectOpen={setSelectOpen}
+          selectText={selectStatusText}
+          list={selectFieldList}
+          isLoading={updateUserBookLoading}
+        />
+
+        <div
+          onClick={() => deleteUserBook(userBook?.data.listItem._id)}
+          className="text-center mt-2 text-xs font-medium text-gray-500 cursor-pointer hover:text-colorPrimary ut-animation"
+        >
+          {deleteUserBookLoading ? <LoadingSpinner /> : "Remove from list"}
+        </div>
+      </div>
     );
   }
 };

@@ -93,7 +93,7 @@ const Ratings = ({ userRatings, bookId }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-colorWhite text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-sm relative"
+        className="bg-colorbg text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-sm relative"
       >
         {/* big Star */}
         <div className="absolute top-0 left-[50%] -translate-x-[50%] -translate-y-[50%]">
