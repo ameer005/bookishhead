@@ -11,7 +11,9 @@ export const useFetchUserBooks = () => {
 };
 
 export const useFetchUserBook = (bookId) => {
-  return useQuery(["userBooks", bookId], fetchUserBook);
+  return useQuery(["userBooks", bookId], fetchUserBook, {
+    retry: false,
+  });
 };
 
 export const useAddUserBook = () => {

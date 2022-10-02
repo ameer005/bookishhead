@@ -1,10 +1,10 @@
-const Logo = () => {
+import Image from "next/image";
+import logo from "../../public/images/logo.png";
+
+const Logo = ({ size }) => {
   return (
-    <div className="font-calson font-semibold text-xl">
-      <span>Bookish</span>
-      <span className="bg-colorPrimary rounded-tr-full rounded-bl-full">
-        Head
-      </span>
+    <div className={size || "w-16"}>
+      <Image src={logo} />
     </div>
   );
 };

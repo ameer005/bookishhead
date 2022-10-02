@@ -30,7 +30,7 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <Logo />
-      <div className=" w-full max-w-[30rem] rounded-lg py-5 px-7">
+      <div className="auth">
         <form
           className="flex flex-col gap-4"
           onSubmit={handleSubmit(submitForm)}
@@ -57,20 +57,21 @@ const LoginPage = () => {
           <div>
             <BtnPrimary
               bgColor={"bg-colorPrimary"}
-              textColor={"text-colorBlack"}
+              textColor={"text-colorWhite"}
               text={"Login"}
               type={"submit"}
               loading={isLoading}
             />
           </div>
-          <Link href={"/signup"}>
-            <a className="text-sm w-full py-3 px-4 rounded-lg font-bold hover:brightness-90 ut-animation bg-colorSecondary text-colorBlack text-center">
-              Create New Account
-            </a>
-          </Link>
-          <button className="text-sm font-semibold text-colorSecondary3 hover:text-colorBlack ut-animation">
-            Forgot Password?
-          </button>
+
+          <div className="font-medium">
+            <span>Don't have an account?</span>
+            <Link href={"/signup"}>
+              <a className="text-colorPrimary ml-1 font-bold hover:text-colorPrimaryLight2 ut-animation">
+                Sign Up
+              </a>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

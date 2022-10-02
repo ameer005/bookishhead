@@ -2,6 +2,7 @@ const Review = require("../../models/review/reviewModel");
 const Book = require("../../models/book/bookModel");
 const AppError = require("../../utils/appError/appError");
 const catchAsync = require("../../utils/catchAsync/catchAsync");
+const APIFeature = require("../../utils/apiFeatures/apiFeatures");
 
 // add review on book
 exports.addReview = catchAsync(async (req, res, next) => {
@@ -42,14 +43,24 @@ exports.getReviews = catchAsync(async (req, res, next) => {
     return next(new AppError("No book found with this id", 400));
   }
 
-  const reviews = await Review.find({ book: bookId });
+  const limit = req.query.limit * 1 || 40;
+  const page = req.query.page * 1 || 1;
+  const totalReviews = await Review.countDocuments();
+  const totalPages = Math.ceil(totalReviews / limit) || 1;
 
-  if (!reviews) {
-    return next(new AppError("You didn't rate this book", 400));
+  let features = new APIFeature(Review.find(), req.query).filter().paginate();
+
+  const reviews = await features.query;
+
+  if (page > totalPages) {
+    return new next(new AppError("No page found", 404));
   }
 
   res.status(200).json({
     status: "success",
+    page,
+    totalPages,
+    results: reviews.length,
     reviews,
   });
 });

@@ -35,7 +35,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="w-full max-w-[25rem] relative"
+      className="relative"
       ref={searchBarRef}
     >
       <label
@@ -45,12 +45,13 @@ const SearchBar = () => {
         className="relative"
       >
         <input
-          className="w-full px-2 py-[6px] border border-colorSecondary  focus:border-colorPrimary outline-none rounded-md ut-animation"
+          className="w-[15rem] focus:w-[25rem] placeholder:text-colorGray text-sm font-medium px-2 py-2 bg-transparent border border-colorGray/50  outline-none rounded-md ut-animation"
           type="text"
+          placeholder="Search..."
           onChange={(e) => setSearchValue(e.target.value)}
           value={searchValue}
         />
-        <MdSearch className="h-6 w-6 absolute top-[50%] right-4 -translate-y-[50%] text-colorSecondary2" />
+        <MdSearch className="h-6 w-6 absolute top-[50%] right-2 -translate-y-[50%] text-colorGray/70" />
       </label>
 
       {showSearchResultBox && (

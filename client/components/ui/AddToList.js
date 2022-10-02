@@ -84,7 +84,7 @@ const AddToList = ({ bookId }) => {
       <button
         disabled={addUserBookLoading || userBooksLoadin}
         onClick={() => addUserBook({ bookId })}
-        className="bg-colorPrimary py-2 text-center text-colorWhite font-medium rounded-md  ut-animation hover:brightness-90 w-full"
+        className="bg-colorPrimary py-2 text-center text-colorWhite font-medium rounded-md  ut-animation hover:brightness-90 w-full red-shadow"
       >
         {addUserBookLoading || userBooksLoadin ? (
           <LoadingSpinner />

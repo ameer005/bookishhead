@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 @layer base {
   *,
   *::after,
@@ -11,10 +13,11 @@
   }
 
   body {
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     min-height: 100vh;
     line-height: 1;
-    background-color: #f8f3ed;
+    background-color: #fbfbfb;
   }
 }
 
@@ -46,5 +49,13 @@
 }
 
 .input {
-  @apply w-full px-4 py-3 font-medium text-sm bg-transparent border-2  rounded-lg outline-none;
+  @apply w-full px-4 py-2 font-medium text-sm bg-none border-2 placeholder:text-colorGray  rounded-md outline-none;
+}
+
+.auth {
+  @apply w-full max-w-[30rem] rounded-lg py-5 px-7 bg-colorWhite shadow-md;
+}
+
+.red-shadow {
+  box-shadow: 0px 4px 10px rgb(232, 72, 75, 0.5);
 }

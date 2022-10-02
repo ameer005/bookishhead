@@ -22,48 +22,49 @@ const Navbar = () => {
       return (
         <div
           onClick={toggleProfileDropdown}
-          className="flex gap-2 items-center cursor-pointer text-colorBlack hover:text-colorPrimary ut-animation"
+          className="flex gap-2 items-center cursor-pointer text-colorGray3 hover:text-colorPrimary ut-animation"
         >
           <Avatar />
-          <div className="flex gap-1 items-center">
+          {/* <div className="flex gap-1 items-center ">
             <div className="text-sm font-semibold ">Ameer</div>
             <CaretDropdown isOpen={profileDropdown} />
-          </div>
+          </div> */}
         </div>
       );
     } else {
       return (
         <>
           <Link href={"/login"}>
-            <a className="py-3  w-[5rem] text-center rounded-md font-medium hover:bg-colorPrimary hover:text-colorWhite text-sm ut-animation">
+            <a className="py-2 w-[6rem] text-center rounded-md font-bold bg-colorPrimary hover:bg-colorPrimaryLight text-colorWhite text-sm ut-animation red-shadow">
               Login
             </a>
           </Link>
-          <Link href={"/signup"}>
-            <a className="py-3  w-[5rem] text-center rounded-md font-medium hover:bg-colorPrimary hover:text-colorWhite text-sm ut-animation">
+          {/* <Link href={"/signup"}>
+            <a className="py-2  w-[6rem] text-center rounded-md font-medium bg-colorPrimary text-colorWhite text-sm ut-animation">
               Sign Up
-            </a>
-          </Link>
+            </a> */}
         </>
       );
     }
   };
 
   return (
-    <header className="flex items-center justify-between px-44 h-[4rem] mb-5 border-b border-colorNav/80">
+    <header className="flex items-center justify-between px-44 h-[4.5rem] mb-5 ">
       {/* Left side of header */}
-      <div className="flex items-center gap-6 w-full">
+      <div className="flex items-center gap-6">
         <Link href={"/"}>
           <a className="cursor-pointer">
-            <Logo />
+            <Logo size={"w-11"} />
           </a>
         </Link>
-
-        <SearchBar />
       </div>
 
       {/* Right side of header */}
-      <div className="flex items-center gap-2">{loggedIn()}</div>
+      <div className="flex items-center gap-4">
+        <SearchBar />
+
+        {loggedIn()}
+      </div>
     </header>
   );
 };

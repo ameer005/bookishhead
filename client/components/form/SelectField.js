@@ -12,7 +12,7 @@ const SelectField = ({
     <div className="relative">
       <div
         onClick={() => setSelectOpen((prev) => !prev)}
-        className=" py-[5px] px-3 flex items-center justify-between border border-colorPrimary rounded-md cursor-pointer"
+        className=" py-[5px] px-3 flex items-center justify-between border border-colorGray rounded-md cursor-pointer"
       >
         {isLoading && (
           <div className="ml-auto mr-auto">

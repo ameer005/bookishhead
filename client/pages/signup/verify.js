@@ -33,7 +33,7 @@ const Verify = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <Logo />
-      <div className=" w-full max-w-[30rem] rounded-lg py-5 px-7">
+      <div className="auth">
         <form
           className="flex flex-col gap-4 mb-4"
           onSubmit={handleSubmit(submitForm)}
@@ -53,7 +53,7 @@ const Verify = () => {
           <BtnPrimary
             loading={isLoading}
             bgColor={"bg-colorPrimary"}
-            textColor={"text-colorBlack"}
+            textColor={"text-colorWhite"}
             text={"Submit"}
             type={"submit"}
           />

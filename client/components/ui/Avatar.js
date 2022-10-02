@@ -1,5 +1,5 @@
 import Image from "next/image";
-import defaultAvatar from "../../public/images/avatar-default.png";
+import defaultAvatar from "../../public/images/default2.png";
 
 const Avatar = ({ avatarImg }) => {
   return (

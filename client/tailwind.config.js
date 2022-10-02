@@ -8,18 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        colorPrimary: "#DAAA63",
-        colorSecondary: "#ada5a1",
-        colorSecondary2: "#b8b2ae",
-        colorSecondary3: "#797371",
-        colorNav: "#dfdbd5",
-        colorBg: "#f8f3ed",
+        colorPrimary: "#E8484B",
+        colorPrimaryLight: "#FF6966",
+        colorPrimaryLight2: "#FF8983",
+        colorPrimaryLight3: "#FFAAA1",
+        // colorPrimary: "#00c1ef",
+        // colorPrimaryLight: "#FF6966",
+        // colorPrimaryLight2: "#FF8983",
+        // colorPrimaryLight3: "#FFAAA1",
         colorWhite: "#FFFFFF",
-        colorBlack: "#2c1810",
-      },
-      fontFamily: {
-        mons: "'Montserrat', 'sans-serif'",
-        calson: "'Libre Caslon Text', 'serif'",
+        colorBlack: "#1c1d22",
+
+        colorGray: "#8e8e91",
+        colorGray2: "#606164",
+        colorGray3: "#494a4e",
       },
     },
   },
