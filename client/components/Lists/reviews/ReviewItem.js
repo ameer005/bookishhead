@@ -13,8 +13,11 @@ const ReviewItem = ({ data }) => {
       <div className="w-full">
         <div className="flex justify-between mb-1">
           <h3 className="font-medium">{data?.user.name}</h3>
-          <div className={"text-gray-500 font-medium "}>
-            {data?.rating !== 10 ? data?.rating.toFixed(1) : data?.rating}
+          <div className="text-gray-500 flex">
+            <div className={"font-bold  "}>
+              {data?.rating !== 10 ? data?.rating.toFixed(1) : data?.rating}
+            </div>
+            {/* <span>/10</span> */}
           </div>
         </div>
         <div>

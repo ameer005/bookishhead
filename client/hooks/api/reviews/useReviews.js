@@ -22,39 +22,39 @@ export const useFetchUserReview = (bookId) => {
 
 export const useDeleteReview = () => {
   const queryClient = useQueryClient();
-  const setRatingsModalState = useStore((state) => state.setRatingsModalState);
+  const setModalState = useStore((state) => state.setModalState);
 
   return useMutation(deleteReview, {
     onSuccess: () => {
       queryClient.invalidateQueries("reviews");
       queryClient.invalidateQueries("books");
-      setRatingsModalState(false);
+      setModalState({ showRatingsModal: false });
     },
   });
 };
 
 export const useAddReview = () => {
   const queryClient = useQueryClient();
-  const setRatingsModalState = useStore((state) => state.setRatingsModalState);
+  const setModalState = useStore((state) => state.setModalState);
 
   return useMutation(addReview, {
     onSuccess: () => {
       queryClient.invalidateQueries("reviews");
       queryClient.invalidateQueries("books");
-      setRatingsModalState(false);
+      setModalState({ showRatingsModal: false, showReviewModal: false });
     },
   });
 };
 
 export const useUpdateReview = (bookId) => {
   const queryClient = useQueryClient();
-  const setRatingsModalState = useStore((state) => state.setRatingsModalState);
+  const setModalState = useStore((state) => state.setModalState);
 
   return useMutation(updateReview, {
     onSuccess: () => {
       queryClient.invalidateQueries("reviews");
       queryClient.invalidateQueries("books");
-      setRatingsModalState(false);
+      setModalState({ showRatingsModal: false, showReviewModal: false });
     },
   });
 };

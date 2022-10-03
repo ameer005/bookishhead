@@ -12,7 +12,7 @@ import { BsFillStarFill } from "react-icons/bs";
 import LoadingSpinner from "../ui/LoadingSpinner";
 
 const Ratings = ({ userRatings, bookId }) => {
-  const setRatingsModalState = useStore((state) => state.setRatingsModalState);
+  const setModalState = useStore((state) => state.setModalState);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const {
@@ -88,12 +88,12 @@ const Ratings = ({ userRatings, bookId }) => {
 
   return ReactDom.createPortal(
     <div
-      onClick={() => setRatingsModalState(false)}
+      onClick={() => setModalState({ showRatingsModal: false })}
       className="fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex items-center justify-center z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-colorbg text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-sm relative"
+        className="bg-colorbg text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-md relative"
       >
         {/* big Star */}
         <div className="absolute top-0 left-[50%] -translate-x-[50%] -translate-y-[50%]">
@@ -122,7 +122,7 @@ const Ratings = ({ userRatings, bookId }) => {
             {userRatings && (
               <button
                 onClick={() => deleteRating(userRatings._id)}
-                className="text-xs font-semibold text-colorSecondary3 py-2 hover:bg-blue-400/20 rounded-md w-full ut-animation"
+                className="text-xs font-semibold text-gray-500 py-2 hover:text-colorPrimaryLight2 rounded-md w-full ut-animation"
                 type="button"
               >
                 {deleteRatingLoading ? <LoadingSpinner /> : "Remove rating"}

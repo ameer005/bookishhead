@@ -1,11 +1,9 @@
 const modalsSlice = (set, get) => ({
   showSearchResultBox: false,
   showRatingsModal: false,
-  setResultBoxState: (state) => {
-    set({ showSearchResultBox: state });
-  },
-  setRatingsModalState: (state) => {
-    set({ showRatingsModal: state });
+  showReviewModal: false,
+  setModalState: (modal) => {
+    set(modal);
   },
 });
 

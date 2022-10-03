@@ -8,12 +8,14 @@ import { BsFillStarFill, BsStar } from "react-icons/bs";
 import ReadMore from "../../../components/ui/ReadMore";
 import AddToList from "../../../components/ui/AddToList";
 import Ratings from "../../../components/modals/Ratings";
+import ReviewsModal from "../../../components/modals/ReviewsModal";
 import ReviewsList from "../../../components/Lists/reviews/ReviewsList";
 
 const BookDetails = () => {
   const router = useRouter();
-  const setRatingsModalState = useStore((state) => state.setRatingsModalState);
   const showRatingsModal = useStore((state) => state.showRatingsModal);
+  const showReviewModal = useStore((state) => state.showReviewModal);
+  const setModalState = useStore((state) => state.setModalState);
   const bookId = router.query.id;
 
   const {
@@ -87,7 +89,7 @@ const BookDetails = () => {
 
               {/* give ratings button */}
               <button
-                onClick={() => setRatingsModalState(true)}
+                onClick={() => setModalState({ showRatingsModal: true })}
                 className="flex gap-1 items-center"
               >
                 {userReviewSuccess ? (
@@ -113,12 +115,6 @@ const BookDetails = () => {
             <ReadMore limit={520} text={bookData?.data.book.summary} />
           </div>
         </div>
-        {showRatingsModal && (
-          <Ratings
-            userRatings={userReviewSuccess && userReviewData?.data.review}
-            bookId={router.query.id}
-          />
-        )}
       </section>
 
       {/* reviews and recommendation section */}
@@ -127,10 +123,15 @@ const BookDetails = () => {
           {/* header */}
           <div className="flex item-center justify-between mb-8">
             <h3 className=" font-bold text-base uppercase tracking-wider">
-              Reviwes
+              Reviews
             </h3>
-            <button className="text-colorPrimary font-medium text-sm hover:text-colorPrimaryLight2 ut-animation">
-              Create Review
+            <button
+              onClick={() => setModalState({ showReviewModal: true })}
+              className="text-colorPrimary font-medium text-sm hover:text-colorPrimaryLight2 ut-animation"
+            >
+              {userReviewData?.data.review.review && userReviewSuccess
+                ? "Edit your review"
+                : "Create review"}
             </button>
           </div>
 
@@ -139,6 +140,20 @@ const BookDetails = () => {
         </div>
         <div className="w-[18rem]">no</div>
       </section>
+
+      {/* modals */}
+      {showRatingsModal && (
+        <Ratings
+          userRatings={userReviewSuccess && userReviewData?.data.review}
+          bookId={router.query.id}
+        />
+      )}
+      {showReviewModal && (
+        <ReviewsModal
+          userReview={userReviewSuccess && userReviewData?.data.review}
+          bookId={router.query.id}
+        />
+      )}
     </>
   );
 };

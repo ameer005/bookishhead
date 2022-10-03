@@ -6,8 +6,8 @@ import { MdSearch } from "react-icons/md";
 import SearchResultBox from "./SearchResultBox";
 
 const SearchBar = () => {
+  const setModalState = useStore((state) => state.setModalState);
   const showSearchResultBox = useStore((state) => state.showSearchResultBox);
-  const setResultBoxState = useStore((state) => state.setResultBoxState);
   const [searchValue, setSearchValue] = useState("");
   const searchBarRef = useRef();
   const { data, isSuccess, isLoading } = useFetchBooks({
@@ -18,16 +18,16 @@ const SearchBar = () => {
 
   useEffect(() => {
     if (searchValue) {
-      setResultBoxState(true);
+      setModalState({ showSearchResultBox: true });
     } else {
-      setResultBoxState(false);
+      setModalState({ showSearchResultBox: false });
     }
   }, [searchValue]);
 
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (!searchBarRef?.current?.contains(e.target)) {
-        setResultBoxState(false);
+        setModalState({ showSearchResultBox: false });
       }
     });
   });
@@ -40,7 +40,7 @@ const SearchBar = () => {
     >
       <label
         onClick={() => {
-          searchValue && setResultBoxState(true);
+          searchValue && setModalState({ showSearchResultBox: true });
         }}
         className="relative"
       >
