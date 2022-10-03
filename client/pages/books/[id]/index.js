@@ -8,24 +8,26 @@ import { BsFillStarFill, BsStar } from "react-icons/bs";
 import ReadMore from "../../../components/ui/ReadMore";
 import AddToList from "../../../components/ui/AddToList";
 import Ratings from "../../../components/modals/Ratings";
+import ReviewsList from "../../../components/Lists/reviews/ReviewsList";
 
 const BookDetails = () => {
   const router = useRouter();
   const setRatingsModalState = useStore((state) => state.setRatingsModalState);
   const showRatingsModal = useStore((state) => state.showRatingsModal);
+  const bookId = router.query.id;
 
   const {
     data: bookData,
     isSuccess: bookSuccess,
     isLoading: bookLoading,
-  } = useFetchBook(router.query.id);
+  } = useFetchBook(bookId);
 
   const {
     data: userReviewData,
     isSuccess: userReviewSuccess,
     isLoading: userReviewLoading,
     refetch: userReviewRefect,
-  } = useFetchUserReview(router.query.id);
+  } = useFetchUserReview(bookId);
 
   const renderGenres = () => {
     return bookData?.data.book.genres.map((genre, index) => {
@@ -44,7 +46,7 @@ const BookDetails = () => {
 
   return (
     <>
-      <section className="px-24">
+      <section className="px-24 mb-10">
         <div className="flex gap-6">
           {/* top right */}
           <div className="shrink-0">
@@ -55,7 +57,7 @@ const BookDetails = () => {
                 alt={bookData?.data.book.title}
               />
             </div>
-            <AddToList bookId={router.query.id} />
+            <AddToList bookId={bookId} />
           </div>
 
           {/* Top left */}
@@ -120,7 +122,23 @@ const BookDetails = () => {
       </section>
 
       {/* reviews and recommendation section */}
-      <section></section>
+      <section className="flex gap-4 px-24">
+        <div className=" w-full">
+          {/* header */}
+          <div className="flex item-center justify-between mb-8">
+            <h3 className=" font-bold text-base uppercase tracking-wider">
+              Reviwes
+            </h3>
+            <button className="text-colorPrimary font-medium text-sm hover:text-colorPrimaryLight2 ut-animation">
+              Create Review
+            </button>
+          </div>
+
+          {/* Reviews box */}
+          <ReviewsList bookId={bookId} />
+        </div>
+        <div className="w-[18rem]">no</div>
+      </section>
     </>
   );
 };

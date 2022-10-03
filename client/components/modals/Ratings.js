@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  useDeleteUserReview,
+  useDeleteReview,
   useAddReview,
   useUpdateReview,
 } from "../../hooks/api/reviews/useReviews";
@@ -19,7 +19,7 @@ const Ratings = ({ userRatings, bookId }) => {
     mutate: deleteRating,
     isSuccess: deleteRatingSuccess,
     isLoading: deleteRatingLoading,
-  } = useDeleteUserReview(bookId);
+  } = useDeleteReview(bookId);
 
   const {
     mutate: addRating,

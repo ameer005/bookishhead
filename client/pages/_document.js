@@ -8,6 +8,7 @@ export default function Document() {
         <Main />
         <NextScript />
         <div id="modal-ratings"></div>
+        <div id="modal-reviews"></div>
       </body>
     </Html>
   );

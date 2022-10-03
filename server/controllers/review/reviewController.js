@@ -7,7 +7,7 @@ const APIFeature = require("../../utils/apiFeatures/apiFeatures");
 // add review on book
 exports.addReview = catchAsync(async (req, res, next) => {
   const { bookId } = req.params;
-  const { rating } = req.body;
+  const { rating, review: reviewText } = req.body;
 
   if (!rating && rating !== 0) {
     return next(new AppError("Please provide all the values", 400));
@@ -23,6 +23,7 @@ exports.addReview = catchAsync(async (req, res, next) => {
     rating: rating,
     book: bookId,
     user: req.user._id,
+    review: reviewText,
   });
 
   res.status(201).json({
@@ -48,9 +49,14 @@ exports.getReviews = catchAsync(async (req, res, next) => {
   const totalReviews = await Review.countDocuments();
   const totalPages = Math.ceil(totalReviews / limit) || 1;
 
-  let features = new APIFeature(Review.find(), req.query).filter().paginate();
+  let features = new APIFeature(Review.find({ book: book }), req.query)
+    .filter()
+    .paginate();
 
-  const reviews = await features.query;
+  const reviews = await features.query.populate({
+    path: "user",
+    select: "_id name email userImage",
+  });
 
   if (page > totalPages) {
     return new next(new AppError("No page found", 404));

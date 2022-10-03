@@ -29,8 +29,8 @@ const bookSchema = new mongoose.Schema(
     },
     ratingsAverage: {
       type: Number,
-      default: 1,
-      min: [1, "Rating must be above 1"],
+      default: 0,
+      min: [0, "Rating must be above 0"],
       max: [10, "Rating must be below 10"],
     },
     genres: [{ name: String }],

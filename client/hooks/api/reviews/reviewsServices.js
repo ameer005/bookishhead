@@ -1,5 +1,9 @@
 import api from "../../../api/api";
 
+export const fetchReviews = ({ queryKey }) => {
+  return api.get(`/books/${queryKey[1].book}/reviews`);
+};
+
 export const fetchUserReview = ({ queryKey }) => {
   return api.get(`/books/${queryKey[1]}/reviews/user`);
 };

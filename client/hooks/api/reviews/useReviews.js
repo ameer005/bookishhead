@@ -5,16 +5,22 @@ import {
   deleteReview,
   addReview,
   updateReview,
+  fetchReviews,
 } from "./reviewsServices";
 
+export const useFetchReviews = (bookId) => {
+  return useQuery(["reviews", { book: bookId }], fetchReviews, {
+    retry: false,
+  });
+};
+
 export const useFetchUserReview = (bookId) => {
-  const queryClient = useQueryClient();
   return useQuery(["reviews", bookId], fetchUserReview, {
     retry: false,
   });
 };
 
-export const useDeleteUserReview = () => {
+export const useDeleteReview = () => {
   const queryClient = useQueryClient();
   const setRatingsModalState = useStore((state) => state.setRatingsModalState);
 

@@ -7,7 +7,7 @@ const reviewSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    min: [1, "Rating must be above 1"],
+    min: [0, "Rating must be above 0"],
     max: [10, "Rating must be below 10"],
   },
   book: {
