@@ -7,6 +7,7 @@ import Logo from "../../components/ui/Logo";
 import Avatar from "../ui/Avatar";
 import SearchBar from "../ui/SearchBar";
 import CaretDropdown from "../ui/CaretDropdown";
+import NavLink from "../ui/NavLink";
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
@@ -48,16 +49,38 @@ const Navbar = () => {
     }
   };
 
+  const navigation = () => {
+    const pages = [
+      { name: "Home", path: "/" },
+      { name: "Profile", path: "/user/profile" },
+      { name: "Books List", path: "/user/list" },
+    ];
+
+    return pages.map((page, index) => {
+      return (
+        <li key={index}>
+          <NavLink
+            className="font-semibold hover:text-colorBlack ut-animation"
+            path={page.path}
+            name={page.name}
+            activeClass="text-colorPrimary"
+          />
+        </li>
+      );
+    });
+  };
+
   return (
     <header className="flex items-center justify-between px-44 h-[4.5rem] mb-5 ">
       {/* Left side of header */}
-      <div className="flex items-center gap-6">
+      <nav className="flex items-center gap-6">
         <Link href={"/"}>
           <a className="cursor-pointer">
             <Logo size={"w-11"} />
           </a>
         </Link>
-      </div>
+        <ul className="flex items-center text-sm gap-8">{navigation()}</ul>
+      </nav>
 
       {/* Right side of header */}
       <div className="flex items-center gap-4">

@@ -2,14 +2,15 @@ import { useRouter } from "next/router";
 import useStore from "../../../store/useStore";
 
 const SearchItem = ({ data }) => {
-  const setResultBoxState = useStore((state) => state.setResultBoxState);
+  const setModalState = useStore((state) => state.setModalState);
+
   const router = useRouter();
 
   return (
     <div
       onClick={() => {
         router.push(`/books/${data._id}`);
-        setResultBoxState(false);
+        setModalState({ showSearchResultBox: false });
       }}
       className="flex gap-4 text-xs cursor-pointer hover:bg-colorPrimary/20 p-2"
     >

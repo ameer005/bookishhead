@@ -3,7 +3,7 @@ import { useState } from "react";
 import Profile from "../../components/settings/Profile";
 import Account from "../../components/settings/Account";
 
-const Settings = () => {
+const ProfilePage = () => {
   const [setting, setSetting] = useState("profile");
 
   return (
@@ -37,4 +37,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default ProfilePage;

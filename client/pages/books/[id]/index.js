@@ -122,7 +122,7 @@ const BookDetails = () => {
         <div className=" w-full">
           {/* header */}
           <div className="flex item-center justify-between mb-8">
-            <h3 className=" font-bold text-base uppercase tracking-wider">
+            <h3 className=" font-bold text-base uppercase tracking-wider text-gray-500">
               Reviews
             </h3>
             <button
@@ -138,7 +138,7 @@ const BookDetails = () => {
           {/* Reviews box */}
           <ReviewsList bookId={bookId} />
         </div>
-        <div className="w-[18rem]">no</div>
+        <div className="w-[18rem]"></div>
       </section>
 
       {/* modals */}
