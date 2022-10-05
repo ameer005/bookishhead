@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 import { useFetchUserBooks } from "../../hooks/api/userBooks/useUserBooks";
 import useStore from "../../store/useStore";
 
@@ -31,8 +32,10 @@ const ListPage = () => {
         <button
           key={index}
           onClick={() => setOption({ listOption: item.toLowerCase() })}
-          className={`font-bold text-gray-500 pb-2  ${
-            listOption === item.toLocaleLowerCase() && "text-colorPrimaryLight"
+          className={`font-bold  pb-2  ${
+            listOption === item.toLocaleLowerCase()
+              ? "text-colorPrimaryLight"
+              : "text-gray-400"
           }`}
         >
           {item}
@@ -48,6 +51,12 @@ const ListPage = () => {
 
       {/* Rendered Settings */}
       <div>
+        {userBooksLoading && (
+          <div className="flex justify-center">
+            <BeatLoader size={10} color={"rgb(255, 137, 131)"} />
+          </div>
+        )}
+
         {listOption === "completed" && <UserBooksList data={completed} />}
         {listOption === "reading" && <UserBooksList data={reading} />}
         {listOption === "plan to read" && <UserBooksList data={plan} />}

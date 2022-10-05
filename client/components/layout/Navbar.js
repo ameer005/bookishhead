@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import useToggle from "../../hooks/useToggle";
 import useStore from "../../store/useStore";
 
 import Logo from "../../components/ui/Logo";
 import Avatar from "../ui/Avatar";
 import SearchBar from "../ui/SearchBar";
-import CaretDropdown from "../ui/CaretDropdown";
 import NavLink from "../ui/NavLink";
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
+  const router = useRouter();
+  const removeUser = useStore((state) => state.removeUser);
   const [isUserLoggedin, setUserLoggedin] = useState(false);
   const { state: profileDropdown, toggle: toggleProfileDropdown } = useToggle();
 
@@ -25,11 +28,31 @@ const Navbar = () => {
           onClick={toggleProfileDropdown}
           className="flex gap-2 items-center cursor-pointer text-colorGray3 hover:text-colorPrimary ut-animation"
         >
-          <Avatar />
-          {/* <div className="flex gap-1 items-center ">
-            <div className="text-sm font-semibold ">Ameer</div>
-            <CaretDropdown isOpen={profileDropdown} />
-          </div> */}
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className="outline-none">
+              <Avatar />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content
+              loop={true}
+              className=" py-4 px-5 flex flex-col gap-1 shadow-md rounded-lg text-sm"
+            >
+              <DropdownMenu.Item className="outline-none hover:text-colorBlack focus:text-colorPrimaryLight3 text-gray-500">
+                <Link href={"/user/profile"}>Profile</Link>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="outline-none hover:text-colorBlack focus:text-colorPrimaryLight3 text-gray-500">
+                <Link href={"/user/list"}>Books List</Link>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item
+                onClick={() => {
+                  removeUser();
+                  router.reload(window.location.pathname);
+                }}
+                className="outline-none hover:text-colorBlack focus:text-colorPrimaryLight3 text-gray-500"
+              >
+                Log Out
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
       );
     } else {
@@ -40,10 +63,6 @@ const Navbar = () => {
               Login
             </a>
           </Link>
-          {/* <Link href={"/signup"}>
-            <a className="py-2  w-[6rem] text-center rounded-md font-medium bg-colorPrimary text-colorWhite text-sm ut-animation">
-              Sign Up
-            </a> */}
         </>
       );
     }
@@ -79,7 +98,9 @@ const Navbar = () => {
             <Logo size={"w-11"} />
           </a>
         </Link>
-        <ul className="flex items-center text-sm gap-8">{navigation()}</ul>
+        {isUserLoggedin && (
+          <ul className="flex items-center text-sm gap-8">{navigation()}</ul>
+        )}
       </nav>
 
       {/* Right side of header */}

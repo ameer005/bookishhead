@@ -9,3 +9,9 @@ export const fetchBooks = ({ queryKey }) => {
 export const fetchBook = ({ queryKey }) => {
   return api.get(`/books/${queryKey[1]}`);
 };
+
+export const fetchInfiniteBooks = ({ queryKey, pageParam = 1 }) => {
+  return api.get(`/books?page=${pageParam}`, {
+    params: queryKey[1],
+  });
+};

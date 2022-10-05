@@ -1,6 +1,7 @@
 import Item from "./Item";
+import BookCardSkeleton from "../../skeletons/BookCardSkeleton";
 
-const BookList = ({ isSuccess, isLoading, data }) => {
+const BookList = ({ isSuccess, isLoading, data, skeletonCount }) => {
   const renderBookList = () => {
     if (!isSuccess) return;
 
@@ -9,10 +10,9 @@ const BookList = ({ isSuccess, isLoading, data }) => {
     });
     1;
   };
+
   return (
-    <div className="grid grid-cols-5 gap-x-10 ">
-      {renderBookList()?.slice(0, 5)}
-    </div>
+    <div className="grid grid-cols-5 gap-x-10 gap-y-6 ">{renderBookList()}</div>
   );
 };
 
