@@ -24,3 +24,19 @@ export const schemaActivateAccount = yup
     otp: yup.string().required("required"),
   })
   .required();
+
+export const updateProfile = yup
+  .object()
+  .shape({
+    userImage: yup.string(),
+    name: yup.string(),
+  })
+  .required();
+
+export const changePassword = yup
+  .object()
+  .shape({
+    currentPassword: yup.string().required(),
+    newPassword: yup.string().required(),
+  })
+  .required();

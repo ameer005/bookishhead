@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { useMutation } from "@tanstack/react-query";
-import { signup, activateAccount, login } from "./authServices";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { signup, activateAccount, login, FetchMyInfo } from "./authServices";
 import useStore from "../../../store/useStore";
 
 export const useSignUp = () => {
@@ -36,4 +36,8 @@ export const useLogin = () => {
       router.push("/");
     },
   });
+};
+
+export const useFetchMyInfo = () => {
+  return useQuery(["users"], FetchMyInfo);
 };

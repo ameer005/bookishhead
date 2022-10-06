@@ -1,14 +1,56 @@
 const User = require("../../models/user/userModel");
 const Book = require("../../models/book/bookModel");
+const multer = require("multer");
+const sharp = require("sharp");
 const AppError = require("../../utils/appError/appError");
 const catchAsync = require("../../utils/catchAsync/catchAsync");
 const generateOtp = require("../../utils/otp/generateOTP");
-const APIFeature = require("../../utils/apiFeatures/apiFeatures");
+
 const {
   sendActivationCode,
   sendForgotPasswordCode,
   sendNewPassword,
 } = require("../../utils/email/email");
+
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, `server/public/user`);
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}-${req.user._id}-${file.originalname}`);
+//   },
+// });
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not an image! Please upload only images", 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadUserPhoto = upload.single("userImage");
+
+exports.resizeUserPhoto = (req, res, next) => {
+  if (!req.file) return;
+
+  req.file.filename = `user-${Date.now()}-${req.user._id}.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`server/public/user/${req.file.filename}`);
+
+  next();
+};
 
 //***********************CREATE USER FLOW*************************//
 
@@ -136,3 +178,39 @@ exports.login = catchAsync(async (req, res, next) => {
 // Forgot Password
 
 // Validate Forgot Password
+
+// updating user info
+exports.updateMe = catchAsync(async (req, res, next) => {
+  const userImage = req?.file?.filename;
+
+  if (req.body.password || req.body.email) {
+    return next(
+      new AppError("This route is not for changing password/email", 400)
+    );
+  }
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { ...req.body, userImage },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({
+    status: "success",
+    user,
+  });
+});
+
+exports.getMyInfo = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user._id).select(
+    "-adminAccess -activationCode -__v"
+  );
+
+  res.status(200).json({
+    status: "success",
+    user,
+  });
+});

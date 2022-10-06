@@ -11,3 +11,7 @@ export const activateAccount = (userData) => {
 export const login = (userDate) => {
   return api.post("/users/login", userDate);
 };
+
+export const FetchMyInfo = () => {
+  return api.get("/users/myInfo");
+};
