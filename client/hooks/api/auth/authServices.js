@@ -15,3 +15,11 @@ export const login = (userDate) => {
 export const FetchMyInfo = () => {
   return api.get("/users/myInfo");
 };
+
+export const updateMyInfo = (userData) => {
+  return api.patch("/users/updateMe", userData);
+};
+
+export const changePassword = (userData) => {
+  return api.patch("/users/changePassword", userData);
+};

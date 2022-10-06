@@ -29,14 +29,14 @@ export const updateProfile = yup
   .object()
   .shape({
     userImage: yup.string(),
-    name: yup.string(),
+    name: yup.string().required(),
   })
   .required();
 
 export const changePassword = yup
   .object()
   .shape({
-    currentPassword: yup.string().required(),
-    newPassword: yup.string().required(),
+    currentPassword: yup.string().min(8, "too short").required(),
+    newPassword: yup.string().min(8, "too short").required(),
   })
   .required();

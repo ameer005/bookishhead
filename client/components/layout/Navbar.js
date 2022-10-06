@@ -30,7 +30,7 @@ const Navbar = () => {
         >
           <DropdownMenu.Root>
             <DropdownMenu.Trigger className="outline-none">
-              <Avatar />
+              <Avatar avatarImg={user?.userImage} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               loop={true}

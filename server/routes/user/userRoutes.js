@@ -11,6 +11,7 @@ const {
   getMyInfo,
   uploadUserPhoto,
   resizeUserPhoto,
+  changePassword,
 } = require("../../controllers/user/userController");
 
 const router = express.Router();
@@ -25,5 +26,6 @@ router
   .route("/updateMe")
   .patch(authenticateUser, uploadUserPhoto, resizeUserPhoto, updateMe);
 router.route("/myInfo").get(authenticateUser, getMyInfo);
+router.route("/changePassword").patch(authenticateUser, changePassword);
 
 module.exports = router;

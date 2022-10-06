@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { signup, activateAccount, login, FetchMyInfo } from "./authServices";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  signup,
+  activateAccount,
+  login,
+  FetchMyInfo,
+  updateMyInfo,
+  changePassword,
+} from "./authServices";
 import useStore from "../../../store/useStore";
 
 export const useSignUp = () => {
@@ -40,4 +47,18 @@ export const useLogin = () => {
 
 export const useFetchMyInfo = () => {
   return useQuery(["users"], FetchMyInfo);
+};
+
+export const useUpdateMyInfo = () => {
+  const queryClient = useQueryClient();
+  return useMutation(updateMyInfo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("users");
+    },
+  });
+};
+
+export const useChangePassword = () => {
+  const queryClient = useQueryClient();
+  return useMutation(changePassword);
 };

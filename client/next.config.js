@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["images.gr-assets.com/books"],
+    domains: ["127.0.0.1"],
   },
 };
 

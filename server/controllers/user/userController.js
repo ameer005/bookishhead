@@ -12,15 +12,6 @@ const {
   sendNewPassword,
 } = require("../../utils/email/email");
 
-// const multerStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, `server/public/user`);
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, `${Date.now()}-${req.user._id}-${file.originalname}`);
-//   },
-// });
-
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
@@ -39,7 +30,7 @@ const upload = multer({
 exports.uploadUserPhoto = upload.single("userImage");
 
 exports.resizeUserPhoto = (req, res, next) => {
-  if (!req.file) return;
+  if (!req.file) return next();
 
   req.file.filename = `user-${Date.now()}-${req.user._id}.jpeg`;
 
@@ -47,7 +38,7 @@ exports.resizeUserPhoto = (req, res, next) => {
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`server/public/user/${req.file.filename}`);
+    .toFile(`public/user/${req.file.filename}`);
 
   next();
 };
@@ -179,9 +170,35 @@ exports.login = catchAsync(async (req, res, next) => {
 
 // Validate Forgot Password
 
+// change password
+exports.changePassword = catchAsync(async (req, res, next) => {
+  const { currentPassword, newPassword } = req.body;
+
+  if (!currentPassword || !newPassword) {
+    return next(new AppError("Please provide all values", 400));
+  }
+
+  const user = await User.findById(req.user._id).select("+password");
+
+  const isPasswordCorrect = await user.comparePassword(currentPassword);
+
+  if (!isPasswordCorrect) {
+    return next(new AppError("Invalid password", 401));
+  }
+
+  user.password = newPassword;
+  await user.save();
+
+  res.status(200).json({
+    status: "success",
+    message: "Password changed successfully",
+  });
+});
+
 // updating user info
 exports.updateMe = catchAsync(async (req, res, next) => {
   const userImage = req?.file?.filename;
+  console.log("yo");
 
   if (req.body.password || req.body.email) {
     return next(

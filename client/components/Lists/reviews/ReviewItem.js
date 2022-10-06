@@ -7,7 +7,7 @@ const ReviewItem = ({ data }) => {
     <div className="flex gap-3 light-shadow px-5 py-4 rounded-md">
       {/* left side */}
       <div>
-        <Avatar />
+        <Avatar avatarImg={data?.user.userImage} />
       </div>
       {/* right side */}
       <div className="w-full">

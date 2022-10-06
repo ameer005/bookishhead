@@ -2,13 +2,19 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useFetchMyInfo } from "../../hooks/api/auth/useAuth";
+import {
+  useFetchMyInfo,
+  useUpdateMyInfo,
+  useChangePassword,
+} from "../../hooks/api/auth/useAuth";
 
 import defaultAvatar from "../../public/images/default2.png";
 
 import Heading from "../../components/ui/Heading";
 import InputField from "../../components/form/InputField";
 import { updateProfile, changePassword } from "../../utils/yup/schema";
+import imagePath from "../../utils/imagePath";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 
 const ProfilePage = () => {
   const {
@@ -16,6 +22,19 @@ const ProfilePage = () => {
     isSuccess: userInfoSuccess,
     isLoading: userInfoLoading,
   } = useFetchMyInfo();
+  const userData = userInfo?.data.user;
+
+  const {
+    mutate: updateUserInfo,
+    isSuccess: updateUserInfoSuccess,
+    isLoading: updateUserInfoLoading,
+  } = useUpdateMyInfo();
+
+  const {
+    mutate: changePassowrd,
+    isSuccess: changePassowrdSuccess,
+    isLoading: changePassowrdLoading,
+  } = useChangePassword();
 
   const {
     register: updateProfileRegister,
@@ -36,16 +55,16 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (userInfoSuccess) {
-      setProfileValue("name", userInfo.data.user.name);
+      setProfileValue("name", userData.name);
     }
   }, [userInfoSuccess]);
 
   const submitProfileFrom = (formData) => {
-    console.log(formData);
+    updateUserInfo(formData);
   };
 
   const submitPasswordForm = (formData) => {
-    console.log(formData);
+    changePassowrd(formData);
   };
 
   return (
@@ -53,23 +72,43 @@ const ProfilePage = () => {
       <form onSubmit={updateProfileSubmit(submitProfileFrom)} className="mb-8">
         <Heading>Your Profile Settings</Heading>
         <div className="flex gap-3 items-center mb-4 pt-2">
-          <div className="h-[4rem] w-[4rem] rounded-full bg-red-500">
-            <Image src={defaultAvatar}></Image>
+          <div className="relative h-[4rem] w-[4rem] overflow-hidden rounded-full">
+            <Image
+              className=""
+              // height={500}
+              // width={500}
+              layout="fill"
+              objectFit="contain"
+              src={
+                userData?.userImage
+                  ? `${imagePath}${userData.userImage}`
+                  : defaultAvatar
+              }
+            ></Image>
           </div>
           <div className="font-bold text-xs text-colorPrimaryLight2">
             Choose Photo
           </div>
         </div>
-        <InputField
-          name={"name"}
-          errors={updateProfileErrors}
-          labelText={"Name"}
-          placeholder={"change name"}
-          register={updateProfileRegister}
-          type={"text"}
-        />
+        <div className="mb-3">
+          <InputField
+            name={"name"}
+            errors={updateProfileErrors}
+            labelText={"Name"}
+            placeholder={"change name"}
+            register={updateProfileRegister}
+            type={"text"}
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="bg-colorPrimary text-colorWhite w-[8rem] py-2 rounded-md hover:bg-colorPrimaryLight2 ut-animation"
+        >
+          {updateUserInfoLoading ? <LoadingSpinner /> : "Save Settings"}
+        </button>
       </form>
-      <form className="">
+      <form onSubmit={changePasswordSubmit(submitPasswordForm)}>
         <Heading>change password</Heading>
         <div className="mb-3 pt-2">
           <InputField
@@ -91,6 +130,12 @@ const ProfilePage = () => {
             type={"text"}
           />
         </div>
+        <button
+          type="submit"
+          className="bg-colorPrimary text-colorWhite w-[8rem] py-2 rounded-md hover:bg-colorPrimaryLight2 ut-animation"
+        >
+          {changePassowrdLoading ? <LoadingSpinner /> : "Save Settings"}
+        </button>
       </form>
     </section>
   );
