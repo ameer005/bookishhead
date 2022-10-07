@@ -23,9 +23,7 @@ const SearchItem = ({ data }) => {
       </div>
       <div>
         <div className="font-calson font-medium text-sm mb-1">{data.title}</div>
-        <div className="font-medium text-colorSecondary3 text-sm">
-          {data.author}
-        </div>
+        <div className="font-medium text-gray-400 text-sm">{data.author}</div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const InputField = ({
 }) => {
   return (
     <label>
-      <div className="text-sm font-bold text-colorBlack mb-1">{labelText}</div>
+      <div className="text-sm font-bold text-gray-600 mb-1">{labelText}</div>
       <input
         className={`input ${
           errors[name] ? "border-red-500" : "border-gray-200"
@@ -20,6 +20,13 @@ const InputField = ({
         name={name}
         {...register(name)}
       />
+      <div className="flex justify-end mt-1">
+        {errors[name] && (
+          <div className="text-xs text-colorPrimary">
+            {errors[name].message}
+          </div>
+        )}
+      </div>
     </label>
   );
 };

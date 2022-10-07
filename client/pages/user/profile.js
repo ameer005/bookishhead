@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   useFetchMyInfo,
@@ -59,7 +60,12 @@ const ProfilePage = () => {
     }
   }, [userInfoSuccess]);
 
-  const submitProfileFrom = (formData) => {
+  const submitProfileFrom = (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("userImage", data.userImage[0]);
+    console.log(formData);
+
     updateUserInfo(formData);
   };
 
@@ -75,8 +81,6 @@ const ProfilePage = () => {
           <div className="relative h-[4rem] w-[4rem] overflow-hidden rounded-full">
             <Image
               className=""
-              // height={500}
-              // width={500}
               layout="fill"
               objectFit="contain"
               src={
@@ -86,9 +90,19 @@ const ProfilePage = () => {
               }
             ></Image>
           </div>
-          <div className="font-bold text-xs text-colorPrimaryLight2">
-            Choose Photo
-          </div>
+
+          <label>
+            <div className="font-bold text-xs text-colorPrimaryLight2 cursor-pointer">
+              Update Photo
+            </div>
+            <input
+              className="hidden"
+              type="file"
+              accept="image/*"
+              name="userImage"
+              {...updateProfileRegister("userImage")}
+            />
+          </label>
         </div>
         <div className="mb-3">
           <InputField

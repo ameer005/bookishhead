@@ -28,7 +28,13 @@ export const schemaActivateAccount = yup
 export const updateProfile = yup
   .object()
   .shape({
-    userImage: yup.string(),
+    userImage: yup
+      .mixed()
+      .test("required", "You need to provide a file", (file) => {
+        if (file) return true;
+        return false;
+      })
+      .notRequired(),
     name: yup.string().required(),
   })
   .required();

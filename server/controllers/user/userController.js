@@ -198,7 +198,8 @@ exports.changePassword = catchAsync(async (req, res, next) => {
 // updating user info
 exports.updateMe = catchAsync(async (req, res, next) => {
   const userImage = req?.file?.filename;
-  console.log("yo");
+
+  console.log(userImage);
 
   if (req.body.password || req.body.email) {
     return next(
