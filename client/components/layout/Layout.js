@@ -11,7 +11,8 @@ const Layout = ({ children }) => {
   const showHeader =
     router.pathname === "/login" ||
     router.pathname === "/signup" ||
-    router.pathname === "/signup/verify"
+    router.pathname === "/signup/verify" ||
+    router.pathname.startsWith("/resetpassword")
       ? false
       : true;
 

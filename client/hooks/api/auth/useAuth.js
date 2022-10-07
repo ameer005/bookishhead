@@ -7,6 +7,8 @@ import {
   FetchMyInfo,
   updateMyInfo,
   changePassword,
+  resetPassword,
+  forgotPassword,
 } from "./authServices";
 import useStore from "../../../store/useStore";
 
@@ -118,6 +120,47 @@ export const useChangePassword = () => {
         },
       });
     },
+    onError: (error) => {
+      setModalState({
+        showToastModal: true,
+        toastProperties: {
+          message: error.response.data.message,
+          type: "error",
+        },
+      });
+    },
+  });
+};
+
+export const useForgorPassword = () => {
+  const setModalState = useStore((state) => state.setModalState);
+  return useMutation(forgotPassword, {
+    onSuccess: () => {
+      setModalState({
+        showToastModal: true,
+        toastProperties: {
+          message: "Check your registered email for reset password link",
+          type: "success",
+        },
+      });
+    },
+    onError: (error) => {
+      setModalState({
+        showToastModal: true,
+        toastProperties: {
+          message: error.response.data.message,
+          type: "error",
+        },
+      });
+    },
+  });
+};
+
+export const useResetPassword = () => {
+  const router = useRouter();
+  const setModalState = useStore((state) => state.setModalState);
+  return useMutation(resetPassword, {
+    onSuccess: () => router.push("/login"),
     onError: (error) => {
       setModalState({
         showToastModal: true,

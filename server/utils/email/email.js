@@ -30,36 +30,16 @@ exports.sendActivationCode = async (name, email, activationCode) => {
   }
 };
 
-exports.sendForgotPasswordCode = async (name, email, resetPasswordCode) => {
+exports.sendForgotPassLink = async (name, email, url) => {
   try {
     const mailOptions = {
       from: "bookishHead",
       to: email,
-      subject: "Password Reset Code",
-      html: `<h1>Forgot Password</h1>
-        <h2>Hello , ${name}</h2>
-        <p>Your password reset code is</p>
-        <h1>${resetPasswordCode}<h1>
-        </div>`,
-    };
-
-    await transporter.sendMail(mailOptions);
-  } catch (err) {
-    console.log("nodemailer error");
-    console.log(err);
-  }
-};
-
-exports.sendNewPassword = async (name, email, password) => {
-  try {
-    const mailOptions = {
-      from: "bookishHead",
-      to: email,
-      subject: "New Password",
-      html: `<h1>New Password Generate</h1>
-        <h2>Hello , ${name}</h2>
-        <p>Your new password is </p>
-        <h1>${password}<h1>
+      subject: "Reset your password",
+      html: `<h1>Reset Password</h1>
+        <h2>Hello ${name}</h2>
+        <p>go to the link below to reset password, it will expire in 15 minutes</p>
+        <h1>${url}<h1>
         </div>`,
     };
 

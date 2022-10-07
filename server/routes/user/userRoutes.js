@@ -12,6 +12,8 @@ const {
   uploadUserPhoto,
   resizeUserPhoto,
   changePassword,
+  forgotPassword,
+  validateForgotPassword,
 } = require("../../controllers/user/userController");
 
 const router = express.Router();
@@ -22,6 +24,9 @@ router.route("/signup").post(signup);
 router.route("/activateAccount").post(activateAccount);
 router.route("/sendActivationCode").post(sendActivationCode);
 router.route("/login").post(login);
+router.route("/forgotPassword").post(forgotPassword);
+router.route("/forgotPassword/:token").post(validateForgotPassword);
+
 router
   .route("/updateMe")
   .patch(authenticateUser, uploadUserPhoto, resizeUserPhoto, updateMe);

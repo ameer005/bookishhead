@@ -58,9 +58,9 @@ userSchema.pre("save", async function (next) {
 });
 
 // instance methods
-userSchema.methods.createJwt = function () {
+userSchema.methods.createJwt = function (expiredTime) {
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_LIFETIME,
+    expiresIn: expiredTime || process.env.JWT_LIFETIME,
   });
 };
 

@@ -93,9 +93,9 @@ const BookDetails = () => {
                 className="flex gap-1 items-center"
               >
                 {userReviewSuccess ? (
-                  <BsFillStarFill className="border text-lg text-blue-500" />
+                  <BsFillStarFill className=" text-lg text-blue-500" />
                 ) : (
-                  <BsStar className="border text-lg text-yellow-500" />
+                  <BsStar className=" text-lg text-yellow-500" />
                 )}
 
                 <div

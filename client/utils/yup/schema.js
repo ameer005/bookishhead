@@ -46,3 +46,17 @@ export const changePassword = yup
     newPassword: yup.string().min(8, "too short").required(),
   })
   .required();
+
+export const schemaResetPassword = yup
+  .object()
+  .shape({
+    newPassword: yup.string().min(8, "too short").required(),
+  })
+  .required();
+
+export const schemaForgotPassword = yup
+  .object()
+  .shape({
+    email: yup.string().email().required("required"),
+  })
+  .required();

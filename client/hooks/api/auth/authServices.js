@@ -23,3 +23,11 @@ export const updateMyInfo = (userData) => {
 export const changePassword = (userData) => {
   return api.patch("/users/changePassword", userData);
 };
+
+export const resetPassword = (payload) => {
+  return api.post(`/users/forgotPassword/${payload.token}`, payload.data);
+};
+
+export const forgotPassword = (userData) => {
+  return api.post("/users/forgotPassword", userData);
+};

@@ -20,7 +20,16 @@ const ReviewsList = ({ bookId }) => {
     });
   };
 
-  return <div className="flex flex-col gap-6"> {renderReviews()}</div>;
+  return (
+    <>
+      <div className="flex flex-col gap-6"> {renderReviews()}</div>
+      {!reviewsWithText?.length && (
+        <div className="flex justify-center">
+          <div>No reviews</div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default ReviewsList;

@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const User = require("../../models/user/userModel");
 const Book = require("../../models/book/bookModel");
 const multer = require("multer");
@@ -8,8 +9,8 @@ const generateOtp = require("../../utils/otp/generateOTP");
 
 const {
   sendActivationCode,
-  sendForgotPasswordCode,
-  sendNewPassword,
+
+  sendForgotPassLink,
 } = require("../../utils/email/email");
 
 const multerStorage = multer.memoryStorage();
@@ -167,8 +168,56 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 // Forgot Password
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return next(new AppError("Please proivde email", 400));
+  }
+
+  const user = await User.findOne({ email });
+  const resetToken = user.createJwt("15m");
+
+  const url = `http://localhost:3000/resetpassword/${resetToken}`;
+
+  await sendForgotPassLink(user.name, user.email, url);
+
+  res.status(200).json({
+    status: "successful",
+    message: "Reset password link has been successfully sent to your email",
+  });
+});
 
 // Validate Forgot Password
+exports.validateForgotPassword = catchAsync(async (req, res, next) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  if (!newPassword) {
+    return next(new AppError("Please provide new password", 400));
+  }
+
+  try {
+    // validating the token
+    const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await User.findById(decode.userId).select("+password");
+
+    if (!user) {
+      return next(new AppError("The user does not exist", 401));
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({
+      status: "successful",
+      message: "Your password has been changed",
+    });
+  } catch (error) {
+    return next(new AppError("Invalid token", 401));
+  }
+});
 
 // change password
 exports.changePassword = catchAsync(async (req, res, next) => {
