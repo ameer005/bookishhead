@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { withProtected } from "../../hooks/routes";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -155,4 +156,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default withProtected(ProfilePage);

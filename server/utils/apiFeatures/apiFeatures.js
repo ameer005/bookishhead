@@ -6,9 +6,15 @@ class APIFeature {
 
   liveFilter() {
     const { title } = this.queryString;
+    const genreName = this.queryString["genres.name"];
 
-    this.query = this.query.find({ title: { $regex: title, $options: "i" } });
-
+    if (title) {
+      this.query = this.query.find({ title: { $regex: title, $options: "i" } });
+    } else {
+      this.query = this.query.find({
+        "genres.name": { $regex: genreName, $options: "i" },
+      });
+    }
     return this;
   }
 

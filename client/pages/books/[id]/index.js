@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useFetchBook } from "../../../hooks/api/book/useBook";
 import { useFetchUserReview } from "../../../hooks/api/reviews/useReviews";
 import useStore from "../../../store/useStore";
@@ -34,12 +35,12 @@ const BookDetails = () => {
   const renderGenres = () => {
     return bookData?.data.book.genres.map((genre, index) => {
       return (
-        <div
-          key={index}
-          className="text-gray-500 px-3 py-1 font-semibold text-xs  rounded-full border bg-gray-300/40 text-center cursor-pointer hover:bg-colorPrimary hover:text-colorWhite ut-animation"
-        >
-          {genre.name}
-        </div>
+        <Link key={index} href={`/books/genre/${genre.name}`}>
+          <a className="text-gray-500 px-3 py-1 font-semibold text-xs  rounded-full border bg-gray-300/40 text-center cursor-pointer hover:bg-colorPrimary hover:text-colorWhite ut-animation">
+            {" "}
+            {genre.name}
+          </a>
+        </Link>
       );
     });
   };

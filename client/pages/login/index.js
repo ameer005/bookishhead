@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withPublic } from "../../hooks/routes";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -64,11 +65,18 @@ const LoginPage = () => {
             />
           </div>
 
-          <div className="font-medium self-center">
-            <span>Don't have an account?</span>
-            <Link href={"/signup"}>
-              <a className="text-colorPrimary ml-1 font-bold hover:text-colorPrimaryLight2 ut-animation">
-                Sign Up
+          <div className="font-medium self-center text-center">
+            <div className="mb-1">
+              <span>Don't have an account?</span>
+              <Link href={"/signup"}>
+                <a className="text-colorPrimary ml-1 font-bold hover:text-colorPrimaryLight2 ut-animation">
+                  Sign Up
+                </a>
+              </Link>
+            </div>
+            <Link href={"/resetpassword"}>
+              <a className="text-gray-400 text-sm ut-animation hover:text-gray-500">
+                Forgot assword?
               </a>
             </Link>
           </div>
@@ -78,4 +86,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withPublic(LoginPage);

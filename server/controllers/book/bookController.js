@@ -12,7 +12,7 @@ exports.getBooks = catchAsync(async (req, res, next) => {
 
   let features;
 
-  if (req.query.title) {
+  if (req.query.title || req.query["genres.name"]) {
     features = new APIFeature(Book.find(), req.query).liveFilter().paginate();
   } else {
     features = new APIFeature(Book.find(), req.query).filter().paginate();

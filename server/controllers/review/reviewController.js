@@ -117,8 +117,6 @@ exports.updateReview = catchAsync(async (req, res, next) => {
 
   if (!review) return next(new AppError("No review found with this id", 400));
 
-  // Review.calcAverageRatings(review.manga);
-
   res.status(200).json({
     status: "success",
     data: {

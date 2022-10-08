@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { withPublic } from "../../hooks/routes";
 
 import InputField from "../../components/form/InputField";
 import BtnPrimary from "../../components/ui/BtnPrimary";
@@ -86,4 +86,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default withPublic(Signup);

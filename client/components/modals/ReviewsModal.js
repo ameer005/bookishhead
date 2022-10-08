@@ -69,6 +69,8 @@ const ReviewsModal = ({ userReview, bookId }) => {
       review: reviewText,
     };
 
+    console.log(formData);
+
     if (userReview) {
       updateReview({
         reviewId: userReview._id,

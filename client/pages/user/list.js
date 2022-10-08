@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { withProtected } from "../../hooks/routes";
 import { BeatLoader } from "react-spinners";
 import { useFetchUserBooks } from "../../hooks/api/userBooks/useUserBooks";
 import useStore from "../../store/useStore";
@@ -65,4 +66,4 @@ const ListPage = () => {
   );
 };
 
-export default ListPage;
+export default withProtected(ListPage);

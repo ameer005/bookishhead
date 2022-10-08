@@ -31,6 +31,7 @@ const GenrePage = () => {
     return books?.pages.map((page) => {
       return (
         <BookList
+          key={page?.data.page}
           data={page?.data.books}
           isLoading={booksLoading}
           isSuccess={booksSuccess}
