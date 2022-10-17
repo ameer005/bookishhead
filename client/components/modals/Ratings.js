@@ -91,7 +91,7 @@ const Ratings = ({ userRatings, bookId }) => {
   return ReactDom.createPortal(
     <div
       onClick={() => setModalState({ showRatingsModal: false })}
-      className="fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex items-center justify-center z-50"
+      className="fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex items-center justify-center z-50 px-4"
     >
       <div
         onClick={(e) => e.stopPropagation()}
