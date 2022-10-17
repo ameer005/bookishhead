@@ -119,13 +119,12 @@ const Navbar = () => {
           className="hidden md:block"
           onClick={() => setModalState({ showMobileSearch: true })}
         >
-          <MdSearch className="h-6 w-6 text-colorGray/70" />
+          <MdSearch className="h-7 w-7 text-colorGray/70" />
         </button>
 
         {/* search input for mobile view */}
         {showMobileSearch && (
           <div className="hidden md:block">
-            <div>yo</div>
             <SearchBar />
           </div>
         )}
