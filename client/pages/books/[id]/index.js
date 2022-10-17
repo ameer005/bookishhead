@@ -49,23 +49,26 @@ const BookDetails = () => {
 
   return (
     <>
-      <section className="px-24 mb-10">
-        <div className="flex gap-6">
+      <section className="px-24 2xl:px-14 xl:px-8 md:px-2 sm:px-0 mb-10">
+        <div className="flex xl:flex-col gap-6">
           {/* top right */}
-          <div className="shrink-0">
-            <div className="h-72 mb-2">
+          <div className="shrink-0 xl:flex xl:flex-col xl:items-center">
+            <div className="h-72 2xl:h-60 mb-2">
               <img
                 className="object-contain h-full w-full rounded-md"
                 src={bookData?.data.book.coverImg}
                 alt={bookData?.data.book.title}
               />
             </div>
-            <AddToList bookId={bookId} />
+
+            <div className="xl:w-[12rem]">
+              <AddToList bookId={bookId} />
+            </div>
           </div>
 
           {/* Top left */}
           <div>
-            <div className="mb-2">
+            <div className="mb-2 xl:text-center">
               <h3 className="font-calson font-bold text-xl">
                 {bookData?.data.book?.title}
               </h3>
@@ -74,7 +77,7 @@ const BookDetails = () => {
                 <span className="ml-1">{bookData?.data.book.author}</span>
               </div>
             </div>
-            <div className="mb-3 flex gap-3 items-center">
+            <div className="mb-3 flex xl:justify-center gap-3 items-center xl:mb-5">
               <div className="flex items-center gap-1">
                 <BsFillStarFill className="text-yellow-500 text-xl" />
                 <div className="font-semibold text-colorSecondary3">
@@ -112,14 +115,16 @@ const BookDetails = () => {
                 </div>
               </button>
             </div>
-            <div className="flex gap-2 mb-3 flex-wrap">{renderGenres()}</div>
+            <div className="flex xl:justify-center gap-2 mb-3 flex-wrap">
+              {renderGenres()}
+            </div>
             <ReadMore limit={520} text={bookData?.data.book.summary} />
           </div>
         </div>
       </section>
 
       {/* reviews and recommendation section */}
-      <section className="flex gap-4 px-24">
+      <section className="flex gap-4 px-24 xl:px-8 md:px-2 sm:px-0">
         <div className=" w-full">
           {/* header */}
           <div className="flex item-center justify-between mb-8">
@@ -139,7 +144,7 @@ const BookDetails = () => {
           {/* Reviews box */}
           <ReviewsList bookId={bookId} />
         </div>
-        <div className="w-[18rem]"></div>
+        <div className="w-[18rem] 2xl:w-0"></div>
       </section>
 
       {/* modals */}

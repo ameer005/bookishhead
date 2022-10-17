@@ -7,12 +7,12 @@ const ReadMore = ({ limit, text }) => {
 
   return (
     <div className="flex flex-col items-start">
-      <span className="mr-1 font-medium leading-[22px] text-gray-500">
+      <p className="mr-1 font-medium leading-[22px] text-gray-500 whitespace-pre-line">
         {readMoreShown ? text : text.substr(0, limit) + showDots}
-      </span>
+      </p>
       {text.length > limit && (
         <button
-          className="font-medium text-colorPrimary"
+          className="font-medium text-colorPrimary self-end"
           onClick={() => setReadMoreShown()}
         >
           {readMoreShown ? "Read less" : "Read more"}

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import ReactDom from "react-dom";
 import {
   useDeleteReview,
   useAddReview,
   useUpdateReview,
 } from "../../hooks/api/reviews/useReviews";
 
-import ReactDom from "react-dom";
+import { MdOutlineClose } from "react-icons/md";
+
 import useStore from "../../store/useStore";
 
 import { BsFillStarFill } from "react-icons/bs";
@@ -95,6 +97,12 @@ const Ratings = ({ userRatings, bookId }) => {
         onClick={(e) => e.stopPropagation()}
         className="bg-colorbg text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-md relative"
       >
+        <div
+          onClick={() => setModalState({ showRatingsModal: false })}
+          className="absolute right-0 top-0 -translate-y-9"
+        >
+          <MdOutlineClose className="text-3xl text-colorWhite cursor-pointer" />
+        </div>
         {/* big Star */}
         <div className="absolute top-0 left-[50%] -translate-x-[50%] -translate-y-[50%]">
           <div className="relative flex justify-center items-center">

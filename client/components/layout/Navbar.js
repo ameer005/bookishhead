@@ -5,6 +5,8 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import useToggle from "../../hooks/useToggle";
 import useStore from "../../store/useStore";
 
+import { MdSearch } from "react-icons/md";
+
 import Logo from "../../components/ui/Logo";
 import Avatar from "../ui/Avatar";
 import SearchBar from "../ui/SearchBar";
@@ -12,6 +14,8 @@ import NavLink from "../ui/NavLink";
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
+  const showMobileSearch = useStore((state) => state.showMobileSearch);
+  const setModalState = useStore((state) => state.setModalState);
   const router = useRouter();
   const removeUser = useStore((state) => state.removeUser);
   const [isUserLoggedin, setUserLoggedin] = useState(false);
@@ -34,7 +38,7 @@ const Navbar = () => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               loop={true}
-              className=" py-4 px-5 flex flex-col gap-1 shadow-md rounded-lg text-sm"
+              className="relative py-4 px-5 flex flex-col gap-1 shadow-md rounded-lg text-sm"
             >
               <DropdownMenu.Item className="outline-none hover:text-colorBlack focus:text-colorPrimaryLight3 text-gray-500">
                 <Link href={"/user/profile"}>Profile</Link>
@@ -90,7 +94,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex items-center justify-between px-44 h-[4.5rem] mb-5 ">
+    <header className="flex items-center justify-between px-44 3xl:px-20 2xl:px-8 md:px-5 h-[4.5rem] mb-5 ">
       {/* Left side of header */}
       <nav className="flex items-center gap-6">
         <Link href={"/"}>
@@ -99,13 +103,32 @@ const Navbar = () => {
           </a>
         </Link>
         {isUserLoggedin && (
-          <ul className="flex items-center text-sm gap-8">{navigation()}</ul>
+          <ul className="flex items-center text-sm gap-8 xl:hidden">
+            {navigation()}
+          </ul>
         )}
       </nav>
 
       {/* Right side of header */}
       <div className="flex items-center gap-4">
-        <SearchBar />
+        {/* search toggle for mobile */}
+        <div className="md:hidden">
+          <SearchBar />
+        </div>
+        <button
+          className="hidden md:block"
+          onClick={() => setModalState({ showMobileSearch: true })}
+        >
+          <MdSearch className="h-6 w-6 text-colorGray/70" />
+        </button>
+
+        {/* search input for mobile view */}
+        {showMobileSearch && (
+          <div className="hidden md:block">
+            <div>yo</div>
+            <SearchBar />
+          </div>
+        )}
 
         {loggedIn()}
       </div>

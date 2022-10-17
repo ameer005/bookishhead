@@ -64,3 +64,24 @@
 .light-shadow {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.04);
 }
+
+/* 850px */
+@media only screen and (max-width: 53em) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+/* 550px */
+@media only screen and (max-width: 34em) {
+  html {
+    font-size: 81.5%;
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 28em) {
+  html {
+    font-size: 75%;
+  }
+}

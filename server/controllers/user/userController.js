@@ -153,7 +153,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Invalid email or password", 401));
   }
 
-  const token = user.createJwt();
+  const token = user.createJwt("2d");
   user.password = undefined;
   user.activationCode = undefined;
   user.accountActivated = undefined;

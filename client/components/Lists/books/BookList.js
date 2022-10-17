@@ -1,7 +1,7 @@
 import Item from "./Item";
 import BookCardSkeleton from "../../skeletons/BookCardSkeleton";
 
-const BookList = ({ isSuccess, isLoading, data, skeletonCount }) => {
+const BookList = ({ isSuccess, data }) => {
   const renderBookList = () => {
     if (!isSuccess) return;
 
@@ -12,7 +12,9 @@ const BookList = ({ isSuccess, isLoading, data, skeletonCount }) => {
   };
 
   return (
-    <div className="grid grid-cols-5 gap-x-10 gap-y-6 ">{renderBookList()}</div>
+    <div className="grid grid-cols-5 justify-items-center 2xl:grid-cols-4 lg:grid-cols-3 xs:grid-cols-2  gap-x-10  gap-y-6">
+      {renderBookList()}
+    </div>
   );
 };
 

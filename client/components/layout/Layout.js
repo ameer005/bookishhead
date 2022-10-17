@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
   return (
     <>
       {showHeader && <Navbar />}
-      <main className="px-44 text-colorBlack text-sm min-h- pb-8">
+      <main className="px-44 3xl:px-20 2xl:px-8 md:px-5  text-colorBlack text-sm min-h- pb-8">
         {children}
       </main>
       {showToastModal && <Toast />}

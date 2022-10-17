@@ -1,4 +1,5 @@
 import useStore from "../../../store/useStore";
+import { useRouter } from "next/router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   fetchUserReview,
@@ -35,6 +36,7 @@ export const useDeleteReview = () => {
 
 export const useAddReview = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const setModalState = useStore((state) => state.setModalState);
 
   return useMutation(addReview, {
@@ -42,6 +44,13 @@ export const useAddReview = () => {
       queryClient.invalidateQueries("reviews");
       queryClient.invalidateQueries("books");
       setModalState({ showRatingsModal: false, showReviewModal: false });
+    },
+    onError: (error) => {
+      console.log("yo", error);
+
+      if (error.response.status === 401) {
+        router.push("/login");
+      }
     },
   });
 };

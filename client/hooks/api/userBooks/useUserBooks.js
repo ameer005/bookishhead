@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   fetchUserBook,
@@ -19,9 +20,15 @@ export const useFetchUserBook = (bookId) => {
 
 export const useAddUserBook = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation(addUserBook, {
     onSuccess: () => {
       queryClient.invalidateQueries("userBooks");
+    },
+    onError: (error) => {
+      if (error.response.status === 401) {
+        router.push("/login");
+      }
     },
   });
 };

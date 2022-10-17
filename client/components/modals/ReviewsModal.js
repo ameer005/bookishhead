@@ -6,6 +6,8 @@ import {
   useUpdateReview,
 } from "../../hooks/api/reviews/useReviews";
 
+import { MdOutlineClose } from "react-icons/md";
+
 import { BsFillStarFill } from "react-icons/bs";
 import LoadingSpinner from "../ui/LoadingSpinner";
 
@@ -95,6 +97,12 @@ const ReviewsModal = ({ userReview, bookId }) => {
         onClick={(e) => e.stopPropagation()}
         className="bg-colorbg text-colorNeutral w-full max-w-[30rem] px-7 py-6 md:px-5 rounded-md relative"
       >
+        <div
+          onClick={() => setModalState({ showReviewModal: false })}
+          className="absolute right-0 top-0 -translate-y-9"
+        >
+          <MdOutlineClose className="text-3xl text-colorWhite cursor-pointer" />
+        </div>
         <form onSubmit={submitForm}>
           <div className="mb-4">
             <div className="font-medium text-sm mb-2 uppercase text-gray-700">

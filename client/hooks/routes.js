@@ -23,7 +23,7 @@ export const withPublic = (Component) => {
 
 export const withProtected = (Component) => {
   return function withPublic(props) {
-    const [isUserLoggedIn, setUserLoggedIn] = useState(true);
+    const [isUserLoggedIn, setUserLoggedIn] = useState(null);
     const user = useStore((state) => state.user);
     const router = useRouter();
 
@@ -31,12 +31,12 @@ export const withProtected = (Component) => {
       setUserLoggedIn(user ? true : false);
     }, []);
 
-    if (!isUserLoggedIn) {
+    if (isUserLoggedIn === false) {
       router.replace("/login");
       return null;
     }
 
-    if (user) {
+    if (isUserLoggedIn === true) {
       return <Component {...props} />;
     }
   };

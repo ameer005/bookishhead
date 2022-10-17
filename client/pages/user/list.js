@@ -46,7 +46,7 @@ const ListPage = () => {
   };
 
   return (
-    <section className="px-32">
+    <section className="px-32 2xl:px-14 xl:px-8 md:px-2 sm:px-0">
       {/* listOption selector header */}
       <div className=" flex justify-center gap-8  mb-8">{renderStatus()}</div>
 

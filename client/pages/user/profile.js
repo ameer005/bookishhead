@@ -65,7 +65,7 @@ const ProfilePage = () => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("userImage", data.userImage[0]);
-    console.log(formData);
+    console.log(data.userImage[0]);
 
     updateUserInfo(formData);
   };
@@ -75,7 +75,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="max-w-[22rem]">
+    <div className="max-w-[22rem]">
       <form onSubmit={updateProfileSubmit(submitProfileFrom)} className="mb-8">
         <Heading>Your Profile Settings</Heading>
         <div className="flex gap-3 items-center mb-4 pt-2">
@@ -152,7 +152,7 @@ const ProfilePage = () => {
           {changePassowrdLoading ? <LoadingSpinner /> : "Save Settings"}
         </button>
       </form>
-    </section>
+    </div>
   );
 };
 

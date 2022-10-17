@@ -1,5 +1,6 @@
 const modalsSlice = (set, get) => ({
   showSearchResultBox: false,
+  showMobileSearch: false,
   showRatingsModal: false,
   showReviewModal: false,
   showToastModal: false,
