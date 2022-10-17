@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
+const hemlet = require("helmet");
 const errorHandlerMiddleware = require("./middleware/error/errorHandler");
 const connectDb = require("./db/connect");
 
@@ -19,8 +20,9 @@ if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 
-app.use(express.static("public"));
 app.use(cors());
+app.use(hemlet());
+app.use(express.static("public"));
 
 app.use(express.json());
 

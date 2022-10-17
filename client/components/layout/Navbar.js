@@ -38,7 +38,7 @@ const Navbar = () => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               loop={true}
-              className="relative py-4 px-5 flex flex-col gap-1 shadow-md rounded-lg text-sm"
+              className="relative py-4 px-5 flex flex-col gap-1 shadow-md rounded-lg text-sm sm:text-base bg-colorbg"
             >
               <DropdownMenu.Item className="outline-none hover:text-colorBlack focus:text-colorPrimaryLight3 text-gray-500">
                 <Link href={"/user/profile"}>Profile</Link>

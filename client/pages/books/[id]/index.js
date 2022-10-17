@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { useFetchBook } from "../../../hooks/api/book/useBook";
 import { useFetchUserReview } from "../../../hooks/api/reviews/useReviews";
@@ -12,12 +11,11 @@ import Ratings from "../../../components/modals/Ratings";
 import ReviewsModal from "../../../components/modals/ReviewsModal";
 import ReviewsList from "../../../components/Lists/reviews/ReviewsList";
 
-const BookDetails = () => {
-  const router = useRouter();
+const BookDetails = ({ query }) => {
   const showRatingsModal = useStore((state) => state.showRatingsModal);
   const showReviewModal = useStore((state) => state.showReviewModal);
   const setModalState = useStore((state) => state.setModalState);
-  const bookId = router.query.id;
+  const bookId = query.id;
 
   const {
     data: bookData,
@@ -36,8 +34,7 @@ const BookDetails = () => {
     return bookData?.data.book.genres.map((genre, index) => {
       return (
         <Link key={index} href={`/books/genre/${genre.name}`}>
-          <a className="text-gray-500 px-3 py-1 font-semibold text-xs  rounded-full border bg-gray-300/40 text-center cursor-pointer hover:bg-colorPrimary hover:text-colorWhite ut-animation">
-            {" "}
+          <a className="text-gray-500 px-3 py-1 font-semibold text-xs rounded-full border bg-gray-300/40 text-center cursor-pointer hover:bg-colorPrimary hover:text-colorWhite ut-animation">
             {genre.name}
           </a>
         </Link>
@@ -144,24 +141,29 @@ const BookDetails = () => {
           {/* Reviews box */}
           <ReviewsList bookId={bookId} />
         </div>
-        <div className="w-[18rem] 2xl:w-0"></div>
+        {/* <div className="w-[18rem] 2xl:w-0"></div> */}
       </section>
 
       {/* modals */}
       {showRatingsModal && (
         <Ratings
           userRatings={userReviewSuccess && userReviewData?.data.review}
-          bookId={router.query.id}
+          bookId={bookId}
         />
       )}
       {showReviewModal && (
         <ReviewsModal
           userReview={userReviewSuccess && userReviewData?.data.review}
-          bookId={router.query.id}
+          bookId={bookId}
         />
       )}
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const { query } = context;
+  return { props: { query } };
 };
 
 export default BookDetails;
