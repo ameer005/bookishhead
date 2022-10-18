@@ -19,7 +19,7 @@ const Toast = ({}) => {
 
   return (
     <div
-      className={`absolute top-6 left-[50%] -translate-x-[50%] px-5 py-3  rounded-md z-[1000] ${toastState}`}
+      className={`absolute top-6 left-[50%] -translate-x-[50%] px-5 sm:px-3 py-3  rounded-md z-[1000] ${toastState}`}
     >
       <div className="flex gap-1 items-center">
         <button onClick={() => setModalState({ showToastModal: false })}>

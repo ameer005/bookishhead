@@ -43,6 +43,7 @@ const ProfilePage = () => {
     formState: { errors: updateProfileErrors },
     handleSubmit: updateProfileSubmit,
     setValue: setProfileValue,
+    watch: watchProfileUpdate,
   } = useForm({
     resolver: yupResolver(updateProfile),
   });
@@ -81,6 +82,7 @@ const ProfilePage = () => {
         <div className="flex gap-3 items-center mb-4 pt-2">
           <div className="relative h-[4rem] w-[4rem] overflow-hidden rounded-full">
             <Image
+              priority
               className=""
               layout="fill"
               objectFit="contain"
