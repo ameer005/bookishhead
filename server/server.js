@@ -1,5 +1,6 @@
 // Module imports
 const express = require("express");
+const path = require("path");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -22,7 +23,7 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use(cors());
 app.use(hemlet());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 
