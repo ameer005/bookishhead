@@ -2,6 +2,7 @@ import { useFetchBooks } from "../hooks/api/book/useBook";
 import Heading from "../components/ui/Heading";
 import BookList from "../components/Lists/books/BookList";
 import BookCardSkeletonList from "../components/skeletons/BookCardSkeletonList";
+import HeaderLink from "../components/ui/HeaderLink";
 
 import BtnLink from "../components/ui/BtnLink";
 
@@ -16,7 +17,8 @@ const HomePage = () => {
     <>
       {/* Section most popular */}
       <section className="mb-8">
-        <Heading>All Time Popular</Heading>
+        {/* <Heading>All Time Popular</Heading> */}
+        <HeaderLink heading={"All Time Popular"} link={"/books/popular"} />
 
         {/* for desktop */}
         <div className="2xl:hidden">
@@ -60,14 +62,15 @@ const HomePage = () => {
           )}
         </div>
 
-        <div className="flex justify-center mt-6">
+        {/* <div className="flex justify-center mt-6">
           <BtnLink link={"/books/popular"} text={"Show All"} />
-        </div>
+        </div> */}
       </section>
 
       {/* Section recommenations */}
       <section className="mb-8">
-        <Heading>Recommendations</Heading>
+        {/* <Heading>Recommendations</Heading> */}
+        <HeaderLink heading={"Recommendations"} link={"/books/popular"} />
 
         <div className="2xl:hidden">
           {popularBooksLoading ? (
@@ -110,9 +113,9 @@ const HomePage = () => {
           )}
         </div>
 
-        <div className="flex justify-center mt-6">
+        {/* <div className="flex justify-center mt-6">
           <BtnLink link={"/books/popular"} text={"Show All"} />
-        </div>
+        </div> */}
       </section>
     </>
   );

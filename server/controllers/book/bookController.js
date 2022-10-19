@@ -12,6 +12,7 @@ exports.getBooks = catchAsync(async (req, res, next) => {
 
   let features;
 
+  // TODO i've to fix this
   if (req.query.title || req.query["genres.name"]) {
     features = new APIFeature(Book.find(), req.query).liveFilter().paginate();
   } else {
