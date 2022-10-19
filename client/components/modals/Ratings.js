@@ -106,7 +106,7 @@ const Ratings = ({ userRatings, bookId }) => {
         {/* big Star */}
         <div className="absolute top-0 left-[50%] -translate-x-[50%] -translate-y-[50%]">
           <div className="relative flex justify-center items-center">
-            <BsFillStarFill className="text-7xl text-blue-400" />
+            <BsFillStarFill className="text-7xl text-orange-400" />
             <div className="absolute font-semibold text-colorWhite">
               {userRatings?.rating || "?"}
             </div>

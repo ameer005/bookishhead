@@ -59,7 +59,7 @@ const Verify = () => {
           />
         </form>
         <div className="text-sm text-colorSecondary3 font-medium self-center">
-          <span>Did'nt recieved OTP? </span>
+          <span>Didn't recieved OTP?</span>
 
           <button className="text-colorPrimary font-bold hover:text-colorBlack ut-animation">
             Resend

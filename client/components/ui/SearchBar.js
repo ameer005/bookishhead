@@ -41,7 +41,7 @@ const SearchBar = () => {
         className="relative md:fixed md:left-0 md:w-full md:top-0 md:h-[4rem] md:z-50 md:flex md:items-center md:bg-colorWhite"
       >
         <input
-          className="w-[25rem] xl:w-[20rem] md:px-6 md:text-base md:w-full md:rounded-none md:border-none placeholder:text-colorGray text-sm font-medium px-2 py-[6px] bg-transparent border border-colorGray/50  outline-none rounded-md ut-animation"
+          className="w-[20rem] xl:w-[20rem] md:px-6 md:text-base md:w-full md:rounded-none md:border-none placeholder:text-colorGray text-sm font-medium px-2 py-[6px] bg-transparent border border-colorGray/50  outline-none rounded-md ut-animation"
           type="text"
           placeholder="Search..."
           onChange={(e) => setSearchValue(e.target.value)}

@@ -76,7 +76,7 @@ const LoginPage = () => {
             </div>
             <Link href={"/resetpassword"}>
               <a className="text-gray-400 text-sm ut-animation hover:text-gray-500">
-                Forgot assword?
+                Forgot password?
               </a>
             </Link>
           </div>

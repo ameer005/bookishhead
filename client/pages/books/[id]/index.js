@@ -69,7 +69,7 @@ const BookDetails = ({ query }) => {
               <h3 className="font-calson font-bold text-xl">
                 {bookData?.data.book?.title}
               </h3>
-              <div className="font-medium text-gray-500/80">
+              <div className="font-medium text-gray-600">
                 <span>by</span>
                 <span className="ml-1">{bookData?.data.book.author}</span>
               </div>

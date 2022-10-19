@@ -48,6 +48,8 @@ const ProfilePage = () => {
     resolver: yupResolver(updateProfile),
   });
 
+  const [userImage] = watchProfileUpdate(["userImage"]);
+
   const {
     register: changePasswordRegister,
     formState: { errors: changePasswordErrors },
