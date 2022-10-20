@@ -1,5 +1,5 @@
 import { useFetchBooks } from "../hooks/api/book/useBook";
-import Heading from "../components/ui/Heading";
+import Head from "next/head";
 import BookList from "../components/Lists/books/BookList";
 import BookCardSkeletonList from "../components/skeletons/BookCardSkeletonList";
 import HeaderLink from "../components/ui/HeaderLink";
@@ -15,6 +15,10 @@ const HomePage = () => {
 
   return (
     <>
+      <Head>
+        <title>Recent updates | bookishHead</title>
+      </Head>
+
       {/* Section most popular */}
       <section className="mb-8">
         {/* <Heading>All Time Popular</Heading> */}

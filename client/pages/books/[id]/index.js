@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useFetchBook } from "../../../hooks/api/book/useBook";
 import { useFetchUserReview } from "../../../hooks/api/reviews/useReviews";
@@ -46,6 +47,9 @@ const BookDetails = ({ query }) => {
 
   return (
     <>
+      <Head>
+        <title>{`${bookData?.data.book.title} | BookisHead`}</title>
+      </Head>
       <section className="px-24 2xl:px-14 xl:px-8 md:px-2 sm:px-0 mb-10">
         <div className="flex xl:flex-col gap-6">
           {/* top right */}

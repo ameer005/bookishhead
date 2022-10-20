@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { withPublic } from "../../hooks/routes";
 
@@ -30,6 +31,9 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
+      <Head>
+        <title>Login | BookishHead</title>
+      </Head>
       <Logo />
       <div className="auth">
         <form

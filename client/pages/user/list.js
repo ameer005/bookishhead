@@ -1,4 +1,4 @@
-import { useState } from "react";
+import Head from "next/head";
 import { withProtected } from "../../hooks/routes";
 import { BeatLoader } from "react-spinners";
 import { useFetchUserBooks } from "../../hooks/api/userBooks/useUserBooks";
@@ -47,6 +47,9 @@ const ListPage = () => {
 
   return (
     <section className="px-32 2xl:px-14 xl:px-8 md:px-2 sm:px-0">
+      <Head>
+        <title>User's list | BookishHead</title>
+      </Head>
       {/* listOption selector header */}
       <div className=" flex justify-center gap-8  mb-8">{renderStatus()}</div>
 
