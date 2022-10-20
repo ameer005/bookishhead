@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
@@ -79,10 +80,13 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-[22rem]">
+      <Head>
+        <title>User's Profile | BookishHead</title>
+      </Head>
       <form onSubmit={updateProfileSubmit(submitProfileFrom)} className="mb-8">
         <Heading>Your Profile Settings</Heading>
         <div className="flex gap-3 items-center mb-4 pt-2">
-          <div className="relative h-[4rem] w-[4rem] overflow-hidden rounded-full">
+          {/* <div className="relative h-[4rem] w-[4rem] overflow-hidden rounded-full">
             <Image
               priority
               className=""
@@ -107,7 +111,7 @@ const ProfilePage = () => {
               name="userImage"
               {...updateProfileRegister("userImage")}
             />
-          </label>
+          </label> */}
         </div>
         <div className="mb-3">
           <InputField
