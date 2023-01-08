@@ -179,7 +179,12 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email });
   const resetToken = user.createJwt("15m");
 
-  const url = `http://localhost:3000/resetpassword/${resetToken}`;
+  const domain =
+    process.env.NODE_ENV === "production"
+      ? "https://bookishhead-front.vercel.app"
+      : "http://localhost:3000";
+
+  const url = `${domain}/resetpassword/${resetToken}`;
 
   await sendForgotPassLink(user.name, user.email, url);
 
